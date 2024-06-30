@@ -102,6 +102,10 @@ switch ( $pa )
    include 'udohr/index.php';
    break;
 
+ case 'greatgoals':
+   include 'greatgoals/index.php';
+   break;
+
    /*
  case 'get_local':
    include 'get_local/index.php';

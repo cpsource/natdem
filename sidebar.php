@@ -66,6 +66,9 @@ if ( 0 ) {
 		<tr>
 			<td class="sidebar"><a href="/?page=udohr">Human Rights</a></td>
 		</tr>
+		<tr>
+			<td class="sidebar"><a href="/?page=greatgoals">Great Goals</a></td>
+		</tr>
 
 		</tbody></table>
 
