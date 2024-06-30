@@ -9,6 +9,7 @@
   //
 function get_story ( $fil )
 {
+  echo "<center><h1>Getting Story $fil </h1></center><br><hr>";
   $flag = 0;
   $handle = fopen ( $fil, "r");
   if ( !$handle ) {
