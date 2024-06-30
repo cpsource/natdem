@@ -22,6 +22,22 @@
   }
   </style>
 -->
+
+  <style>
+  table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+  }
+  td, th {
+    padding: 10px;
+    vertical-align: top;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  </style>
   
 </head>
 
