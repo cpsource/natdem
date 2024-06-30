@@ -1,6 +1,0 @@
-
-<Files "wills">
-  RewriteEngine On
-  RewriteCond %{HTTP_USER_AGENT} ^wget [NC]
-  RewriteRule .* - [F,L]
-</Files>

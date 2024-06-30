@@ -1,6 +1,4 @@
-
-<Files "wills">
-  RewriteEngine On
-  RewriteCond %{HTTP_USER_AGENT} ^wget [NC]
-  RewriteRule .* - [F,L]
-</Files>
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile ~/.htpasswd
+Require valid-user
