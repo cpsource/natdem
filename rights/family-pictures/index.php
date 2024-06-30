@@ -3,8 +3,8 @@
 <head>
   <title>Page Family Photos</title>
 
+<!--
   <style>
-    /* ... (same CSS as before) ... */
   table {
     width: 80%;
     margin: 20px auto;
@@ -21,10 +21,11 @@
     height: auto;
   }
   </style>
-
+-->
+  
 </head>
-<body>
 
+<body>
   
 <table>
   <tr>
