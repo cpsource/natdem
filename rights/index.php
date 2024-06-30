@@ -21,7 +21,7 @@ function get_story ( $fil )
       $buffer = fgets($handle);
       if ( 0 == $flag ) {
 	  // find <body>
-	  if ( 0 == strncasecmp($buffer,'<body>',6) ) {
+	  if ( 0 == strncasecmp($buffer,'<body',5) ) {
 		  $flag = 1;
 	  }
 	  continue;
