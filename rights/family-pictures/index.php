@@ -32,7 +32,7 @@
 
 <?php
 // Define the directory to scan
-$directory = './'; // Replace with actual path
+$directory = 'rights/family-pictures/.'; // Replace with actual path
 // Open the directory
 if ($handle = opendir($directory)) {
 
