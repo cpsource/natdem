@@ -26,14 +26,13 @@
   
 <table>
   <tr>
-    <th>Family Picture</th>
+    <th>William R. Page Family Pictures</th>
     <th>Description</th>
   </tr>
 
 <?php
 // Define the directory to scan
 $directory = './'; // Replace with actual path
-echo "directory = $directory";
 // Open the directory
 if ($handle = opendir($directory)) {
 
