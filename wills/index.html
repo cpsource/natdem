@@ -1,28 +1,28 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 <head>
-  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-  <title>Page Wills</title>
+  <title>Password Checker</title>
+  <script>
+    function checkPassword() {
+      const correctPassword = "PageFamilyPassword"; // Replace with your desired password
+      const enteredPassword = document.getElementById("passwordInput").value;
+
+      if (enteredPassword === correctPassword) {
+        alert("Correct password! Welcome.");
+          // You can add further actions here, like redirecting to a new page
+	  window.location.href = "index-ok.html";
+      } else {
+        alert("Incorrect password. Please try again.");
+        // You can optionally clear the input field or provide hints
+      }
+    }
+  </script>
 </head>
 <body>
-Here's the first Janet Will I could find. I don't have the origionals of either, but at least the copies are signed.
-Click to get the part:<br>
-<br>
-&nbsp;&nbsp;&nbsp; <a href="Janet1.jpg">Part1-a</a><br>
-&nbsp;&nbsp;&nbsp; <a href="Janet2.jpg">Part2-a</a><br>
-&nbsp;&nbsp;&nbsp; <a href="Janet3.jpg">Part3-a</a><br>
-&nbsp;&nbsp;&nbsp; <a href="Janet4.jpg">Part4-a</a><br>
-<br>
-Here's another signed Janet Will that differs from the one above:<br>
-<br>
-&nbsp;&nbsp;&nbsp; <a href="Janet1-1982.jpg">Part1-b</a><br>
-&nbsp;&nbsp;&nbsp; <a href="Janet2-1982.jpg">Part2-b</a><br>
-&nbsp;&nbsp;&nbsp; <a href="Janet3-1982.jpg">Part3-b</a><br>
-&nbsp;&nbsp;&nbsp; <a href="Janet4-1982.jpg">Part4-b</a><br>
-&nbsp;&nbsp;&nbsp; <a href="Janet5-1982.jpg">Part5-b</a><br>
-<br>
-I have Dad's Will as well but not the origional. It's more complex as there's a trust. I'll post both documents up by the end of the weekend.
-<br>
-Cal <br>
+
+  <h2>Enter Password:</h2>
+  <input type="password" id="passwordInput">
+  <button onclick="checkPassword()">Submit</button>
+
 </body>
 </html>
