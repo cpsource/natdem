@@ -75,6 +75,9 @@ if ( 0 ) {
 		<tr>
 			<td class="sidebar"><a href="/?page=obituary">Obituary</a></td>
 		</tr>
+		<tr>
+			<td class="sidebar"><a href="/?page=end9">Music and Parting Words</a></td>
+		</tr>
 
 		</tbody></table>
 

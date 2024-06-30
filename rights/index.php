@@ -89,6 +89,10 @@ switch ( $pa )
    include 'homepage/index.php';
    break;
 
+ case 'end9':
+      include 'end9/index.php';
+      break;
+
  case 'family-pictures':
       include 'family-pictures/index.php';
       break;
