@@ -53,4 +53,5 @@ $cp_base = '/';
 $cp_base_url = $cp_url . $cp_base;
 $cp_host_type = 3;
 $cp_path = '/var/www/html/';
+$cp_debug = 0
 ?>
