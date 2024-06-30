@@ -1,0 +1,9 @@
+#options all
+AddHandler cgi-script .pl
+AddType text/html .shtml
+AddType application/x-httpd-php .phtml
+AddHandler server-parsed .shtml
+Options +Includes
+Options -Indexes
+XBitHack on
+DirectoryIndex index.php

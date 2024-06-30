@@ -1,0 +1,213 @@
+﻿CAL  PAGE
+
+15 Kodiak Road  ~  Brookline, New Hampshire  03033
+603-673-9403	page.cal@gmail.com
+
+
+Summary
+
+I am an Embedded and Firmware Software Engineer with a deep background in Linux (on x86, arm, ppc) although I've worked with smaller environments such as Atmel and 8051 as well. All my projects ship on time and are high quality. I've worked in small, medium, and large groups and I get up to speed quickly in any environment.
+
+QUALIFICATIONS
+
+Accomplished, seasoned Professional with extensive and proven success in Software and Web Development, as well as expertise in embedded and real-time software, tool development, communications, drivers, diagnostics and databases. Exceptional communication skills; easily interacts with executives, clients, vendors, contractors and coworkers. Superior troubleshooting skills, diagnosing and resolving critical and complex issues. Extensive repertoire of product experience.
+
+COMPUTER  SKILLS
+
+Software: Drivers, Logic Simulation, Diagnostics, Applications Software, Systems Software, Databases, Software QA, Micro-Code, Networks, Performance and Benchmarks, Kernel Programming, Multi-Processor Kernels, SCSI Bus, and Diagnostics
+
+Operating Systems: Real-time, Time-sharing, Transaction- processing, Linux, UNIX System 5, SCO UNIX, SCO ODT, UNIX, ULTRIX, HPUX 10.x, AIX 4.x, PC-DOS, Alpha OSF, OSF-1, Microsoft NT 3.5 and 4.0, Windows 95 and 98, VMS, RT11, RSX, DOS, TOPS, RSTS, pSOS, Wind River UNIX, ELX, and ELN, SUN OS and Solaris
+
+Languages: MACRO-32 for VAX, MACRO-11 for PDP11, Intel 80486, Pentium COBOL, DIBOL, FORTRAN, PASCAL, C, ANSI C, C++, LISP, PHP, PROLOG, BLISS-16, BLISS-32, BASIC, BASIC-Plus-2, Windows 3, MS Windows, VB.net, X11, PERL 4, PERL 5, FORTH, BASH, SH, CSH, KSH, JAVA, JDBC, JNI, Notes / LotusScript, pthreads, and threads
+
+Firmware: MicroVAX, VAX,Z80, 8080, 80186, 80x86, 8051, PDP-11 processors
+
+Databases: IBM DB2, MS SQL., Sleepycat DB, Netscape LDAP Directory Server
+
+Java: RAD including IBM Visual Age / Java and Symantec VC / Java, for version 1.1.6 of the Java Language; Sun JDK 1.1.6, JDK 1.2 and BDK; JNI and JDBC
+
+PROFESSIONAL  EXPERIENCE
+
+VideoIQ Corporation, Bedford, MA                                                                                        9/1/08-1/9/09
+Software Consultant – Contract/Oxford
+
+Developed a software interface in 'C' on 2.6 Linux using I2c to interface to a NXP Video Encoder, Model SAA7136.  This part encoded incoming video from security cameras to an analytics module. Added email to the camera using libesmtp with TLS to notify customers of detected alarms.  Assisted in programming a Texas Instruments DSP, Model TSM320DM6437 to preprocess video signals. Modified the 2.6 Linux kernel to delay IDE disk spin-up if ambient temperatures were below a threshold. Backported and evaluated NAND YAFFS and UBIFS files systems from 2.6.27 and Google ANTROID for use on the camera. Also performed  miscellaneous software maintenance including rate limiting video capture.
+
+Teradyne – North Reading, MA                                                                                         1/20/08 – 8/30/08	
+Software Consultant – Contract/Oxford
+
+Developed two embedded applications within the Linux environment to interface test data flow between components.
+
+Gentex Corporation, Manchester, New Hampshire	9/5/07 – 1/15/08
+Software Consultant – Contract/Oxford
+
+The product was an intercom system to be deployed on Coast Guard Cutters. Each hardware node was based on the Blackfin FPGA running Linux 2.6.11/uboot connected to an Ethernet. A codec would convert speech to binary data and this would be transmitted over the network to the receiving station where it would be converted back to audio. My specific tasks included:
+Writing a high speed real time network stack for Linux. This included kernel modifications as well as a loadable module to do tasklet level data processing. Also include was a /proc interface to monitor performance.
+Integrating and testing VOX, PTT, and LSS audio conditioning software.
+Providing a test console to speed development.
+Re-architect and implement a fast and efficient in-band control message sub-system.
+Perform Q/A testing.
+Supporting hardware engineers to provide FPGA and CODEC test code such as tone generators etc.
+Provide structure to the development process by instituting the CVS code management system.
+
+When I started with the project, it had failed alpha level testing and was late on delivery. Voice would sputter and often fail to get through from node to node.  After major architectural changes, and hard work, the system would support all required 32 nodes with only one percent of the 100 mb network in use. When I left, we had successfully shipped and installed our first units.
+
+Fidelity, Merrimack, New Hampshire	6/18/07 – 9/16/07
+Software Consultant – Contract/Veritude
+
+Performed System Administration on over 1200 Linux boxes throughout the corporation. This included occasional troubleshooting as well as disk and network administration.
+
+Doble Engineering Services, Watertown, Massachusetts	2005 - 2007
+Software Consultant - Contract
+
+Performed all software engineering tasks for a new product, the MCM. This unit is used by electrical power utility companies, and accurately tests and measures the Power Factor between a test voltage and a reference source. The test box contained two processors: an x86 and a PowerPc. Both processors ran variations of Linux. I was responsible for architecture design, implementation, and testing for all software on both processors, including kernel level changes, drivers, and application software. Further details include:
+The x86 processor was responsible for driving an LCD display, running a state engine to communicate with the PowerPc, and accepting front panel keypad input. The LCD display with driven through X11 and then GTK2 with a C/C++ interface. The state engine was coded in the Forth language. The front panel keyed input was managed through the bidirectional parallel port, from a user-space thread. The application included internationalization support (including CJK with the Pinyin input method for Simplified Chinese).
+The PowerPC software communicated with the x86 through a network socket, and was responsible for driving the analog board, collecting A/D data, then processing this A/D data, and reporting results back to the x86. The embedded PowerPC used uBoot for system startup, and ran with a modified BusyBox environment. The FIR filter, brought forward from another product, was augmented by adding an FFT transform algorithm.
+I was the software lead on a second test box, the M4U. This product was a high end extension of the previous test box because it performed many functions automatically, including generating high voltages used for testing, and an automated test sequences. I was responsible for the architectural work and designing the package. Along with coding much of the package, I also directed other software engineers. Other details include:
+Timesys Linux was run in a PowerPC in an embedded environment.
+A major portion of the work included a multi-threaded application written in 'C'. Additional work included a patch package, a test package, and debugging packages. A Forth style console was implemented to speed all phases of testing and debug.
+I code reviewed, rewrote, and then patched 8051 microcode for an auxiliary processor written in 'C'. This processor was used by the M4U to control high voltages generated by the box.
+
+Stratus Computer, Maynard, Massachusetts	2004 - 2005
+Linux Software Consultant - Contract
+
+Added FiberChannel external disk support to the Stratus Hardened, high reliability  2.4 Kernel drivers and loadable modules.. The Stratus modifications add High-Availability features to the kernel. With disks for example, any disk may be pulled or fail without warning with no data loss overall. When the disk is re-added, data is resynchronized real-time. Also, persistent device naming was added to the SCSI mid-layer in support of these features. This work required detailed knowledge of linux internals including semaphores, kernel threads, and loadable modules.
+Performed kernel software engineering and design tasks for migrating from kernel revision 2.4 to 2.6, and from Redhat to SUSE distros. This included evaluation of newer features including multpath support, udev, sysfs, as well as a detail study of the differenced between 2.4 and 2.6 drivers.
+
+compuPage, Inc. Brookline, New Hampshire	2003 
+Owner / Senior Software Engineer / Forth Language Designer – Freelance
+
+Wrote and release a a variant of the Forth computer language named calForth. The product was released to Sourceforge under GPL and can be viewed starting at http://calForth.sourceforge.net.
+
+CAL PAGE SOFTWARE, Brookline, New Hampshire	2003 
+Owner / Senior Software Engineer / Web Designer – Freelance
+
+Establish and maintain Web sites for clients; includes designing and implementing SQL databases, Web pages, and performing server side processing using PHP, Perl and CGI.
+Support clients’ objectives by designing their Web sites for such purposes as mailing list management, blogs, bulletin boards, shopping carts, and other state-of-the-art Web technologies.
+Integrage Microsoft's .NET technology, including VB.net.
+
+PHYSIOMETRICX, INC., Billerica, Massachusetts	2003
+Linux Software Consultant - Contract
+
+Primary Project:  
+
+Linux 2.5 Kernel IDE Driver Project: Modified a Linux 2.5 kernel IDE driver to support removable CompactFlash drives. Performed troubleshooting on the existing driver to recognize the second device as a standard Linux disk, as well as being able to add and mount the device, change the geometry for different size disks, flush any caches, as well as dismounting and removing the device. Additionally, a test program was written to fully exercise and test the various IOCTLs necessary.
+PROFESSIONAL  EXPERIENCE (continued)
+
+LUCENT TECHNOLOGIES, Westford, Massachusetts	1998 – 2002
+Consulting Software Engineer – Fulltime employee (2000 – 2002)
+Consulting Software Engineer – Contract (1998 – 2000)
+
+Performed kernel development, bug fixing, new product design and development, simulation, troubleshooting, and writing drivers in an embedded RTOS environment; product set included the GX-500, GX-550 and SpringTide multi-services switches.
+Modified RTOS to include paging support, memory stack segment overflow support, floating point support, memory mapped I/O support, and Northbridge / Southbridge initialization and error reporting support; ClearCase was used for source code management.
+Wrote numerous drivers supporting memory-mapped terminal support, thermal interrupt support, PCI Master Target Abort support, NMI support, and others; additional support was added for benchmarking, code coverage, and crash dump analysis.
+Coded / modified middleware components for card support including messaging, SNMP handlers, crash code execution and policy, and handlers for double bit memory errors and NMI interrupts.
+Assisted in debugging and development of switch software by developing numerous tools; also worked with Cygnus / Redhat to qualify the Cygnus tool chain for our environment.
+
+Primary Projects:  
+
+New Linux Kernel Project: Completed an advanced development project to replace pSOS with Linux. Used RedHat 2.4.2 kernel, modifying it to support our custom PCI devices. Wrote numerous drivers, as well as a modified OS loader that worked in the switch environment. A Linux tool chain was ported to the Solaris environment.
+
+HA Core / Edge MPLS Data Switch Project: Served as Systems Architect and assisted in the requirements and specifications phase for developing a High Availability (HA – 5 9’s) Core / Edge MPLS data switch with over 320 GB capacity per shelf. Collaborated on vendor selection, development tool choices, RTOS requirements, and background CPU selection. A number of benchmarks were run to assist in this analysis.
+
+SpringTide 5 9’s Availability Project: Served as Technical Lead for an availability project within the SpringTide group. Designed and implemented static and dynamic software techniques, increasing the availability of the box. A signaling stack was added to provide JAVA / C++ signals to the C constructions. A memory leak detector was coded and tested. Special LINT scripts were developed to identify bugs. Successfully identified and resolved over 1200 code bugs in the million-line code base.
+
+COMPAQ COMPUTER CORPORATION, Nashua, New Hampshire	1997 – 1998
+Software Consultant – Contract
+
+Primary Project:  
+
+Enhanced Cluster Security: Served on the UNIX Kernel Security group, modifying and enhancing security for clusters. Modified NIS locking and the building of maps. Benchmarked the login performance; did a performance analysis on Netscape LDAP Directory Server, and compared to Sleepycat's DB V2. Worked with vendor to modify Sleepycat's DB V2 to support Enhanced Security. Added COMPAQ Distributed Lock Manager for UNIX64 / OSF cluster support.
+
+LOTUS DEVELOPMENT CORPORATION, Cambridge, Massachusetts	1996 – 1997
+Principal Software Engineer – Fulltime employee (1997)
+Principal Software Engineer – Contract (1996)
+
+Maintained the LS:DO relational database interface to the Notes product, migrating the product to UNIX platforms, including AIX, HPUX, SUN Solaris and X86 platforms.
+Served as point of contact for critical customer problems, identifying, isolating and resolving those issues efficiently and effectively.
+PROFESSIONAL  EXPERIENCE (continued)
+
+LOTUS DEVELOPMENT CORPORATION (continued)
+
+Added new product features including a cache limit to allow an infinite number of database records, support for transaction mode, and a revised LS:DO method allowing product revision tracking in production and at the customer site.
+Set up and supported the ClearCase source code management and release system for LS:DO.
+Set up a Notes Domino / Web server on the Lotus intranet.
+Coordinated and supported product development by writing and updating LS:DO Engineering Specifications used enterprise-wide.
+Evaluated Microsoft's and Intersolv's ODBC V3 database connectivity packages.
+Used Purify on SOLARIS and NT to identify and remove memory leaks from the product. When Purify was first run, the product would leak one megabyte per second of operation and soon exhaust the operating system. On SOLARIS, this required writing a pseudo-notes driver to exercise LS:DO, to keep the size of Purify within acceptable limits.
+Increased productivity and decreased costs by writing a utility that allowed developers in Cambridge to access ClearCase in Westford.
+
+COMPUPAGE, INC., Brookline, New Hampshire	1995
+Owner / Principal Software Engineer – Freelance
+
+Developed a CASE tool using the LINUX OS, assisting software engineering projects using commonly available Internet tools.
+Wrote a library of common subroutines.
+
+DIGITAL EQUIPMENT CORPORATION, INC., Merrimack, New Hampshire	1995
+Software Consultant – Contract
+
+Developed a software package in ‘C’ on OSF-1 that used pthreads to store and retrieve video images; used a client / server model and included a network layer, a high-speed RPC clone, and a raw file system to manage multiple disks.
+Provided software maintenance on Digital’s implementation of Wind Rivers’ Real Time UNIX.
+
+EPOCH SYSTEMS, INC., Westboro, Massachusetts	1993 – 1994
+Software Consultant – Contract
+
+Primary Project:  
+
+Network Interface Project: Developed the network interface for a user-level NFS product on multiple platforms, including SUN Solaris. Provided the front-end to a networked stageable file system on UNIX servers. The network interface included such features as idempotent processing, fast request cache, fsync optimization, and wrappers for system management utilities such as share. The product was coded in ANSI compatible 'C' and used a multiple heavy weight processing model with shared memory. A Transport Independent Model was used for communications.
+
+DIGITAL EQUIPMENT CORPORATION, INC., Acton, Massachusetts	1992 – 1993
+Software Consulstant – Contract
+
+Primary Project:  
+
+CASE Tool Set: Developed a CASE Tool Set for ULTRIX using a FUSE backplane. Tools that were attached to this backplane included SQL PCMS, Interleaf I5, Oracle V6, Lotus 123, ObjectCenter and CodeCenter, McCabe's Battlemap Analysis Tool, Motif 1.1.3, DEC's C++, Telesoft's TeleUse, IDE's Software Through Pictures, FrameMaker, and JYACC’s Jam.
+PROFESSIONAL  EXPERIENCE (continued)
+
+DIGITAL EQUIPMENT CORPORATION, INC., Merrimack, New Hampshire	1991 – 1992
+Software Consultant – Contract
+
+Primary Project:  
+
+Data Communications Package: Developed a Factory Data Management data communications package for Ultrix using the ANSI FDDI ring. A driver was back-ported from OSF to Ultrix for the DEFTA Turbo Channel Controller and then interfaced with a VNI-class library written in C++. This library was then called by two application programs. In addition to a formal product specification, an 88-page user manual was written using VAX Document. System operated at the 100 mega-bit speed required by the FDDI ring. Real-time algorithm was invented that allowed packets to be delivered within a guaranteed interval to other nodes.
+
+DATA GENERAL CORPORATION, Southborough, Massachusetts	1991
+Program Manager – Contract
+
+Primary Project:  
+
+Missile Telemetry System: Served as Project Manager for missile Telemetry System for the Federal Government at Edwards Air Force Base. Interfaced to the DGC Aviion computer. Developed and utilized strict project management controls, project plans, cost estimates, and functional specifications.
+
+PERIMETER TECHNOLOGY, INC., Nashua, New Hampshire	1991
+Software Consultant – Contract
+
+Converted the RT100 application from SCO XENIX-386 to SCO UNIX.
+Installed SCO's UNIX 3.2.2 OS with the following layered products: TCP, TCP Development System, INGRES 6.2, SCO Development System for 3.2.2, GNU EMACS, CSCOPE, RCS by Mortise Systems, Inc., Kermit, and u386MON.
+Wrote / modified shell and implementation scripts, converted application components from INGRES V5 to V6, and converted the device driver for the "Activator" by Security Software of Stanford, CT.
+Verified code compliance by performing unit test and software QA on all code modifications.
+Conducted performance and benchmark analysis for INGRES V6.
+
+DIGITAL EQUIPMENT CORPORATION, Marlboro, Massachusetts	1982 – 1990
+Principal Software Engineer (1989 – 1990)
+Software Consultant (1988)
+Software Consultant (1982 – 1983) – Contract
+
+PAGE COMPUTER, INC., Lexington, Massachusetts	1982
+Owner / Software Engineer - Freelance
+
+DIGITAL EQUIPMENT CORPORATION, Nashua, New Hampshire	1980 – 1981
+Software Consultant – Contract
+
+GEORGIA PACIFIC CORPORATION, Portland, Oregon	1978 – 1980
+Field Service Engineer
+
+DIGITAL EQUIPMENT CORPORATION, Maynard, Massachusetts	1971 – 1978
+Field Service Systems Engineer
+
+EDUCATION
+
+RIVIER COLLEGE, Nashua, New Hampshire
+Master of Business Administration, 1990
+
+UNIVERSITY OF MAINE, Orono, Maine
+Bachelor of Science in Physics, 1971
