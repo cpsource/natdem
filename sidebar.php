@@ -69,6 +69,9 @@ if ( 0 ) {
 		<tr>
 			<td class="sidebar"><a href="/?page=greatgoals">Great Goals</a></td>
 		</tr>
+		<tr>
+			<td class="sidebar"><a href="/?page=family-pictures">Family Pictures</a></td>
+		</tr>
 
 		</tbody></table>
 
