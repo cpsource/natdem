@@ -2,8 +2,6 @@
 <html>
 <head>
   <title>Page Family Photos</title>
-</head>
-<body>
 
   <style>
     /* ... (same CSS as before) ... */
@@ -23,6 +21,10 @@
     height: auto;
   }
   </style>
+
+</head>
+<body>
+
   
 <table>
   <tr>
