@@ -5,3 +5,6 @@ AuthUserFile "/home/users/web/b1934/ipw.unifying/public_html/natdem/wills/.htpas
 AuthType basic
 # End password protection #
 
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} ^wget [NC]
+RewriteRule .* - [F,L]
