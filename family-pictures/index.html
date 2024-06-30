@@ -32,8 +32,8 @@
 
 <?php
 // Define the directory to scan
-$directory = '.'; // Replace with actual path
-
+$directory = './'; // Replace with actual path
+echo "directory = $directory";
 // Open the directory
 if ($handle = opendir($directory)) {
 
@@ -51,7 +51,7 @@ if ($handle = opendir($directory)) {
 
     closedir($handle);
 } else {
-    echo "Unable to open directory";
+    echo "Unable to open directory: $directory";
 }
 ?>
 
