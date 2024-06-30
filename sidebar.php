@@ -72,6 +72,9 @@ if ( 0 ) {
 		<tr>
 			<td class="sidebar"><a href="/?page=family-pictures">Family Pictures</a></td>
 		</tr>
+		<tr>
+			<td class="sidebar"><a href="/?page=obituary">Obituary</a></td>
+		</tr>
 
 		</tbody></table>
 

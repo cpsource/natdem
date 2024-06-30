@@ -92,6 +92,10 @@ switch ( $pa )
  case 'family-pictures':
       include 'family-pictures/index.php';
       break;
+
+ case 'obituary':
+      include 'obituary/index.php';
+      break;
       
  case 'pressroom':
    include 'pressroom/index.php';
