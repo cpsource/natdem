@@ -93,6 +93,10 @@ switch ( $pa )
       include 'homepage/index.php';
       break;
 
+ case 'secretariat':
+      include 'secretariat/index.php';
+      break;
+
  case 'end9':
       include 'end9/index.php';
       break;

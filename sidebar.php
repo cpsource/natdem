@@ -79,7 +79,10 @@ if ( 0 ) {
 			<td class="sidebar"><a href="/?page=bombs">Atomc Bombs</a></td>
 		</tr>
 		<tr>
-			<td class="sidebar"><a href="/?page=end9">Music and Parting Words</a></td>
+			<td class="sidebar"><a href="/?page=bombs">Atomc Bombs</a></td>
+		</tr>
+		<tr>
+			<td class="sidebar"><a href="/?page=secretariat">UN Secretariat</a></td>
 		</tr>
 
 		</tbody></table>
