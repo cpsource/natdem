@@ -1,4 +1,4 @@
-<hr width="82%" size="2">
+/* <hr width="82%" size="2"> */
 
 <div style="text-align: center;">
 Copyright &copy; 2002 to 2024, William R. Page, Author<br>
