@@ -78,7 +78,7 @@ include 'rights/index.php';
 
 <?php
 
-echo "cp4 - including bottom.php";
+/* echo "cp4 - including bottom.php"; */
 
 include 'bottom.php';
 ?>
