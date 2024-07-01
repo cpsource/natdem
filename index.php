@@ -77,6 +77,9 @@ include 'rights/index.php';
 </table>
 
 <?php
+
+echo "cp4 - including bottom.php";
+
 include 'bottom.php';
 ?>
 
