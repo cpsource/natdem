@@ -49,7 +49,7 @@ if ( !isset($_GET['page'] ) ) {
   $pa = $_GET['page'];
 }
 
-echo "<a>at cp1, page = $pa</a></br>";
+/* echo "<a>at cp1, page = $pa</a></br>"; */
 
 if ( isset($_GET['subpage']) ) {
   $tmp = ucfirst($pa);
@@ -83,13 +83,13 @@ $bc = '</tr></td>
 // start the main right table
 echo $tc;
 
-echo "<a>at cp2, page = $pa</a></br>";
+/* echo "<a>at cp2, page = $pa</a></br>"; */
 
 // goto whatever page is indicated
 switch ( $pa )
 {
  case 'homepage':
-      echo "<a>at cp3, page = $pa</a></br>";
+/*      echo "<a>at cp3, page = $pa</a></br>"; */
       include 'homepage/index.php';
       break;
 
