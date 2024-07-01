@@ -89,8 +89,9 @@ echo "<a>at cp2, page = $pa</a></br>";
 switch ( $pa )
 {
  case 'homepage':
-   include 'homepage/index.php';
-   break;
+      echo "<a>at cp3, page = $pa</a></br>";
+      include 'homepage/index.php';
+      break;
 
  case 'end9':
       include 'end9/index.php';
