@@ -49,6 +49,8 @@ if ( !isset($_GET['page'] ) ) {
   $pa = $_GET['page'];
 }
 
+echo "<a>at cp1, page = $pa</a></br>";
+
 if ( isset($_GET['subpage']) ) {
   $tmp = ucfirst($pa);
   $goh = "
