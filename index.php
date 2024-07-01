@@ -83,5 +83,9 @@ include 'rights/index.php';
 include 'bottom.php';
 ?>
 
+<?php
+get_story('rights/homepage/Web_Project_Outline.html');
+?>
+
 </body>
 </html>
