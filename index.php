@@ -20,7 +20,7 @@
   <meta name="resource-type" content="document">
   <meta name="revisit-after" content="5">
 
-  <meta name="keywords" content="Natural Democracy">
+  <meta name="keywords" content="Natural Democracy, World Peace">
   <meta name="description" content="Natural Democracy: Homepage">
   <meta name="target" content="Homepage">
 
