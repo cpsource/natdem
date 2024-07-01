@@ -83,6 +83,8 @@ $bc = '</tr></td>
 // start the main right table
 echo $tc;
 
+echo "<a>at cp2, page = $pa</a></br>";
+
 // goto whatever page is indicated
 switch ( $pa )
 {
