@@ -93,6 +93,10 @@ switch ( $pa )
       include 'end9/index.php';
       break;
 
+ case 'bombs':
+      include 'bombs/index.php';
+      break;
+
  case 'family-pictures':
       include 'family-pictures/index.php';
       break;
