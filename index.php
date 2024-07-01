@@ -83,9 +83,13 @@ include 'rights/index.php';
 include 'bottom.php';
 ?>
 
+
+<div style="text-align: center;">
+<hr style="width: 100%; height: 2px;">
 <?php
 get_story('rights/homepage/Web_Project_Outline.html');
 ?>
+</div)
 
 </body>
 </html>
