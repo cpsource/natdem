@@ -194,6 +194,9 @@ switch ( $pa )
    break;
 }
 
+<hr>
+get_story ( 'rights/homepage/Web_Project_Outline.html' );
+
 // end the main right table
 echo $bc;
 
