@@ -129,66 +129,6 @@ switch ( $pa )
    include 'greatgoals/index.php';
    break;
 
-   /*
- case 'get_local':
-   include 'get_local/index.php';
-   break;
-
- case 'contribute':
-   include 'contribute/index.php';
-   break;
-
- case 'volunteer':
-   include 'volunteer/index.php';
-   break;
-
- case 'about':
-   include 'about/index.php';
-   break;
-
- case 'links':
-   include 'links/links.php';
-   break;
-
- case 'legal':
-   include 'legal-info/index.php';
-   break;
-
- case 'FEC_Reports':
-   include 'legal-info/FEC_Reports/index.php';
-   break;
-
- case 'Privacy_Policy':
-   echo "<hr>";
-   get_story ( $cp_path . '/rights/legal-info/Privacy_Policy.html' );
-   break;
-
- case 'Fair_Use':
-   echo "<hr>";
-   get_story ( $cp_path . '/rights/legal-info/Fair_Use_Notice.html' );
-   break;
-
- case 'contact':
-   include 'contact/index.php';
-   break;
-
- case 'issues':
-   include 'issues/index.php';
-   break;
- 
- case 'tst':
-   include 'tst/index.php';
-   break;
-
- case 'events':
-   include 'events/index.php';
-   break;
-
- case 'gotv':
-   include 'gotv/index.php';
-   break;
-   */
-
  default:
    echo "Page $pa not found<br>";
    break;
@@ -196,6 +136,8 @@ switch ( $pa )
 
 /* <hr> */
 /*get_story ( 'rights/homepage/Web_Project_Outline.html' ); */
+
+echo "<hr>";
 
 // end the main right table
 echo $bc;
