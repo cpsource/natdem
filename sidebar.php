@@ -70,6 +70,9 @@ if ( 0 ) {
 			<td class="sidebar"><a href="/?page=greatgoals">Great Goals</a></td>
 		</tr>
 		<tr>
+			<td class="sidebar"><a href="/?page=fullpotential">Humanity Reaching Full Potential</a></td>
+		</tr>
+		<tr>
 			<td class="sidebar"><a href="/?page=family-pictures">Family Pictures</a></td>
 		</tr>
 		<tr>

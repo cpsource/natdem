@@ -133,6 +133,10 @@ switch ( $pa )
    include 'greatgoals/index.php';
    break;
 
+ case 'fullpotential':
+   include 'greatgoals/index-full-potential.php';
+   break;
+
  default:
    echo "Page $pa not found<br>";
    break;
