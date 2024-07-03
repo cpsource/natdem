@@ -14,7 +14,7 @@
 			<td class="sidebar"><a href="/?page=book">The Book</a></td>
 		</tr>
 		<tr>
-			<td class="sidebar"><a href="http://natdem/?page=pressroom">Press Room</a></td>
+			<td class="sidebar"><a href="http://natdem.net/?page=pressroom">Press Room</a></td>
 		</tr>
 		</tbody></table>
 
@@ -27,7 +27,7 @@
 			<td class="sidebar" colspan="2"><b>GET INVOLVED</b></td>
 		</tr>
 		<tr>
-			<td class="sidebar"><a href="http://natdem/forum">Online Forum</a></td>
+			<td class="sidebar"><a href="http://natdem.net/forum">Online Forum</a></td>
 		</tr>
 		</tbody></table>
 
@@ -42,16 +42,16 @@
 if ( 0 ) {
 ?>
 		<tr>
-			<td class="sidebar"><a href="http://natdem/photos">Photos</a></td>
+			<td class="sidebar"><a href="http://natdem.net/photos">Photos</a></td>
 		</tr>
 		<tr>
-			<td class="sidebar"><a href="http://natdem/downloads">Downloads</a></td>
+			<td class="sidebar"><a href="http://natdem.net/downloads">Downloads</a></td>
 		</tr>
 <?php
 }
 ?>
 		<tr>
-			<td class="sidebar"><a href="mailto:wrpage@natdem.com">Contact Author</a></td>
+			<td class="sidebar"><a href="mailto:wrpage@natdem.net">Contact Author</a></td>
 		</tr>
 		<tr>
 			<td class="sidebar"><a href="/?page=udohr">Human Rights</a></td>

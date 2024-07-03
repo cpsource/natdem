@@ -3,9 +3,9 @@
 $cpage_who = $_SERVER['SERVER_NAME'];
 //echo "cpage_who = $cpage_who<br>";
 
-if ( 0 == strcmp('natdem.com',$cpage_who) || 0 == strcmp('www.natdem.com',$cpage_who) ) {
+if ( 0 == strcmp('natdem.net',$cpage_who) || 0 == strcmp('www.natdem.net',$cpage_who) ) {
   $cpage_remote_flag = 1;
-  $cp_url = 'http://www.natdem.com';
+  $cp_url = 'http://www.natdem.net';
   $cp_base = '/';
   $cp_base_url = $cp_url . $cp_base;
   $cp_host_type = 3;
@@ -31,7 +31,7 @@ if ( 0 == strcmp('ajept.com',$cpage_who) || 0 == strcmp('ajept.com',$cpage_who) 
 if ( (0 == strcmp('host191.ipowerweb.com',$cpage_who)) ||
      (0 == strcmp('www.unifyinggravity.com',$cpage_who)) ) {
   $cpage_remote_flag = 1;
-  $cp_url = 'http://www.natdem.com';
+  $cp_url = 'http://www.natdem.net';
   $cp_base = '/';
   $cp_base_url = $cp_url . $cp_base;
   $cp_host_type = 3;

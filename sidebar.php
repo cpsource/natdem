@@ -35,7 +35,7 @@ if ( 0 ) {
 			<td class="sidebar" colspan="2"><b>GET INVOLVED</b></td>
 		</tr>
 		<tr>
-			<td class="sidebar"><a href="http://natdem.com/v-web/bulletin/bb/viewforum.php?f=2">Online Forum</a></td>
+			<td class="sidebar"><a href="http://natdem.net/v-web/bulletin/bb/viewforum.php?f=2">Online Forum</a></td>
 		</tr>
 		</tbody></table>
 <?php
@@ -51,16 +51,16 @@ if ( 0 ) {
 if ( 0 ) {
 ?>
 		<tr>
-			<td class="sidebar"><a href="http://www.natdem.com/photos">Photos</a></td>
+			<td class="sidebar"><a href="http://www.natdem.net/photos">Photos</a></td>
 		</tr>
 		<tr>
-			<td class="sidebar"><a href="http://www.natdem.com/downloads">Downloads</a></td>
+			<td class="sidebar"><a href="http://www.natdem.net/downloads">Downloads</a></td>
 		</tr>
 <?php
 }
 ?>
 <!--		<tr>
-			<td class="sidebar"><a href="mailto:wrpage@natdem.com">Contact Author</a></td>
+			<td class="sidebar"><a href="mailto:wrpage@natdem.net">Contact Author</a></td>
 		</tr>
 -->
 		<tr>
