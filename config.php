@@ -47,11 +47,11 @@ if ( (0 == strcmp('host191.ipowerweb.com',$cpage_who)) ||
 }
 }
 }
-$cp_url = '3.99.188.19';
-$cp_url = 'http://3.99.188.19';
+$cp_url = '15.222.150.160';
+$cp_url = "http://$cp_url";
 $cp_base = '/';
 $cp_base_url = $cp_url . $cp_base;
 $cp_host_type = 3;
 $cp_path = '/var/www/html/';
-$cp_debug = 1
+$cp_debug = 0
 ?>
