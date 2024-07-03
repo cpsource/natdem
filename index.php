@@ -2,6 +2,13 @@
   include( 'config.php' );
   include( 'include/never_cache.php' );
 
+$host = $_SERVER['HTTP_HOST'];
+
+// Extract the subdomain
+$subdomain = explode('.', $host)[0]; // Get the first part before the first dot
+
+echo $subdomain;
+
 //
 // To keep everything consistent on the web site
 // we use this level 1 wrapper.
