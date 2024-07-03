@@ -2,12 +2,11 @@
   include( 'config.php' );
   include( 'include/never_cache.php' );
 
-$host = $_SERVER['HTTP_HOST'];
+$tsthost = $_SERVER['HTTP_HOST'];
 
 // Extract the subdomain
-$subdomain = explode('.', $host)[0]; // Get the first part before the first dot
-
-echo $subdomain;
+$tstsubdomain = explode('.', $tsthost)[0]; // Get the first part before the first dot
+//echo $tstsubdomain;
 
 //
 // To keep everything consistent on the web site
@@ -49,6 +48,10 @@ echo $st;
 </head>
 
 <body onload="framebreaker()">
+
+<?php
+echo "subdomain array: $tstsubdomain";
+?>
 
 <!-- main table -->
 <table cellpadding="2" cellspacing="2" border="0"
