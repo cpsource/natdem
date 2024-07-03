@@ -50,7 +50,7 @@ echo $st;
 <body onload="framebreaker()">
 
 <?php
-echo "subdomain array: $tstsubdomain";
+//echo "subdomain array: $tstsubdomain";
 ?>
 
 <!-- main table -->
