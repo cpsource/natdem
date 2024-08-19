@@ -1,0 +1,74 @@
+/* Basic styling for the page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+}
+
+/* Styling the headline */
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+/* Styling the paragraph with the "highlight" class */
+.highlight {
+    font-size: 1.2em;
+    color: #555;
+    position: relative;
+}
+
+/*
+The fire emoji (🔥) is a standard Unicode character that is available on most modern devices and operating systems. Unicode provides a unique code point for each character, including emojis, which can be rendered by different platforms.
+
+When writing HTML or CSS, you can simply include the emoji directly as a character in your code, just like any other text. This works because most browsers and text editors are capable of displaying Unicode characters, including emojis.
+
+For example, you can directly copy and paste the emoji 🔥 into your code, or if you're working with characters that might not be directly available on your keyboard, you can use the Unicode escape sequence \1F525 (where 1F525 is the Unicode code point for the fire emoji). In CSS, you would write:
+  content: '\1F525 ';
+
+You can find Unicode characters and their corresponding code points in various ways. Here are some popular methods:
+
+1. Unicode.org
+Unicode Code Charts: The official Unicode website provides comprehensive charts listing all Unicode characters. You can browse these charts to find the characters you're interested in along with their code points.
+Search: Use the Unicode character search to look up specific characters by name or description.
+2. Emoji Websites
+Emojipedia: Websites like Emojipedia are great for finding emojis and their Unicode code points. Each emoji entry provides details, including the Unicode code point, description, and how it appears on different platforms.
+Get Emoji: Get Emoji allows you to copy and paste emojis and provides their Unicode details.
+3. Character Map Tool (Windows) or Character Viewer (Mac)
+Windows: You can use the built-in Character Map tool to browse and copy Unicode characters. To access it, search for "Character Map" in the Start menu.
+Mac: Use the Character Viewer by pressing Control + Command + Space to open the emoji and symbol picker, where you can find various Unicode characters.
+4. Online Tools
+Unicode Lookup: Websites like Unicode Lookup allow you to search for Unicode characters by entering part of their name or description.
+HTML Symbol Reference: Websites like W3Schools provide lists of HTML symbols and their corresponding Unicode code points.
+5. Using a Text Editor or IDE
+Many modern text editors and IDEs support Unicode directly. For example, you can type or paste a Unicode character directly into your code, and the editor will display it correctly.
+Some editors also have plugins or features that allow you to insert special characters or see their Unicode code points.
+Example of Finding Unicode for Fire Emoji:
+On Emojipedia: Search for "fire emoji," and you’ll find that its Unicode code point is U+1F525.
+On Unicode.org: You can look at the chart for the Miscellaneous Symbols and Pictographs block, where the fire emoji resides.
+This should cover most scenarios where you need to find Unicode characters and their corresponding codes.
+*/
+
+/* Adding content before the .highlight element using ::before */
+.highlight::before {
+    /* Content to be inserted before the element */
+    content: '🔥 '; /* Adding a fire emoji before the paragraph */
+    
+    /* Styling the inserted content */
+    color: #ff4500; /* Changing the color of the emoji */
+    font-size: 1.5em; /* Making the emoji slightly larger */
+    
+    /* Adding some space between the emoji and the text */
+    margin-right: 10px;
+    
+    /* Adjusting position if needed */
+    position: relative;
+    top: 2px; /* Slightly aligning the emoji vertically */
+}
+
+/* Styling for the second paragraph */
+p {
+    font-size: 1em;
+    color: #666;
+}
+

@@ -1,0 +1,217 @@
+
+/* <!-- pzzz No @extend so we have to do this the hard way --> */
+.text-large {
+    font-size: 18px; /* Large text */
+}
+
+.text-medium {
+    font-size: 16px; /* Medium text */
+}
+
+.text-small {
+    font-size: 14px; /* Small text */
+}
+
+.table-class {
+    font-size: 18px; /* Large text */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif; /* Apply the Google Font */
+    font-size: 18px; /* Large text */
+}
+
+.container {
+    display: flex;
+}
+
+.left-column {
+    flex: 0 0 250px; /* Fixed width for desktop */
+    background-color: #f8f9fa;
+    color: white;
+}
+
+.left-column ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.left-column ul li {
+    flex: 1; /* Equal height for each menu item */
+}
+
+.left-column ul li a {
+    display: block;
+    padding: 20px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    border-bottom: 1px solid #495057;
+}
+
+.left-column ul li a:hover {
+    background-color: #495057;
+    color: red;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.table-story {
+	width: 100%;
+    	table-layout: fixed;
+	border-collapse: collapse;
+        }
+
+.td-story {
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	white-space: normal;
+	width: 150px;
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    .left-column {
+        flex: 0 0 100px; /* Narrower width for tablets */
+	font-size: 16px;
+    }
+    .left-column ul li a {
+        padding: 10px;
+	font-size: 16px;
+    }
+    .table-story {
+	font-size: 16px;
+    }
+    .table-class {
+	font-size: 16px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .left-column {
+        flex: 0 0 60px; /* Even narrower width for phones */
+	font-size: 14px;
+    }
+    .left-column ul li a {
+        padding: 5px;
+	font-size: 14px;
+    }
+    .table-story {
+	font-size: 14px;
+    }
+    .table-class {
+	font-size: 14px;
+    }
+}
+
+/* <-- from header.php --> */
+        .darker-green-bg {
+            background-color: #a3d9a5;
+            /* Slightly darker green background */
+            padding-top: 10px;
+            /* Add 10px padding at the top */
+            padding-bottom: 10px;
+        }
+
+        .img-fluid {
+            max-height: 200px;
+            /* Adjust the height to match the second image */
+            width: auto;
+            /* Keep the aspect ratio */
+            display: block;
+            margin: 0 auto;
+            /* Center the image horizontally */
+        }
+
+        .no-padding {
+            padding: 0;
+        }
+
+        .center-content {
+            text-align: center;
+        }
+
+        hr.custom-hr {
+            border: none;
+            border-top: 2px solid black;
+            width: 50%;
+            margin: 20px auto;
+            /* Add 20px padding around the hr */
+        }
+
+        .custom-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .custom-container {
+            width: 80%; /* Set the container to 75% of the viewport width */
+            margin: 0 auto; /* Center the container horizontally */
+            display: flex;
+            flex-wrap: wrap; /* Allow the columns to wrap on smaller screens */
+        }
+
+        .left-column-a {
+            flex: 0 0 15%; /* Take up 20% of the container's width */
+            max-width: 15%; /* Ensure the column does not exceed 20% */
+            padding: 20px;
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+
+        .right-column-a {
+            flex: 1; /* Take up the remaining space */
+            background-color: #f8f9fa; /* Light background color */
+            padding: 20px;
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+        .left-column-b {
+            flex: 0 0 15%; /* Take up 20% of the container's width */
+            max-width: 15%; /* Ensure the column does not exceed 20% */
+            padding: 20px;
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+
+        .right-column-b {
+            flex: 1; /* Take up the remaining space */
+            background-color: #a3d9a5; /* Light background color */
+            padding: 20px;
+            box-sizing: border-box; /* Ensure padding is included in the width */
+	    /* border: 8px solid red; */ /* for debug, show our container */
+	    }
+	.row {
+	    /* border: 8px solid blue; */ /* for debug, show our container */
+	}
+	.black-border {
+	    /* border: 8px solid black; */ /* for debug, show our container */
+	}
+	
+        
+/* <!-- from footer.php --> */
+	.custom-hr {
+	    border: none;
+	    border-top: 2px solid black;
+	    width: 50%;
+	    margin: 20px auto; /* Center the hr and add padding */
+	}
+	.footer-text {
+	    text-align: center;
+	    padding: 10px 0;
+	}

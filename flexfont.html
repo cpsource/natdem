@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 150px;
+            font-size: 16px; /* Set the font size for the table cells */
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: column; /* Arrange items in a column */
+            justify-content: center; /* Center items vertically */
+            align-items: flex-start; /* Align items to the start (left) */
+            height: 100%; /* Make sure the flex container takes full height of the cell */
+            word-wrap: break-word; /* Ensure text wraps inside the flex container */
+            overflow-wrap: break-word;
+            white-space: normal;
+            font-size: 14px; /* Adjust font size specifically within the flex container */
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <div class="flex-container">
+                    <span>This is some long text that should wrap inside the table cell. It will continue wrapping until it reaches the end of the cell's width.</span>
+                    <span>Additional text below.</span>
+                </div>
+            </td>
+            <td>
+                <div class="flex-container">
+                    <span>Another cell with flex content.</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+

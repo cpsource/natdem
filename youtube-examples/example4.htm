@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clamp Width Example</title>
+    <style>
+        /* Styling for the container element */
+        .container {
+            width: clamp(400px, 50vw, 800px); /* Container width using clamp() */
+            margin: 20px auto; /* Center the container horizontally */
+            padding: 20px;
+            border: 2px solid #333;
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Clamp Width Example</h1>
+    <p>The width of this container is responsive but will always stay between 400px and 800px, with a preferred width of 50% of the viewport.</p>
+
+    <!-- Container using clamp() for width -->
+    <div class="container">
+        <p>This container's width adjusts based on the size of the viewport, but it won't be smaller than 400px or larger than 800px.</p>
+        <p>Resize the browser window to see how the container width changes.</p>
+    </div>
+
+</body>
+</html>
+

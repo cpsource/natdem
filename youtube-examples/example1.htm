@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resizable Box Example</title>
+    <style>
+        /* Styling for the resizable container element */
+        .element {
+            width: 300px;       /* Initial width of the container */
+            height: 150px;      /* Initial height of the container */
+            border: 2px solid #333; /* Border around the container */
+            padding: 10px;      /* Padding inside the container */
+            overflow: auto;     /* Show scrollbars if content overflows  - fails with overflow: hidden */
+            resize: both;       /* Allow the user to resize both horizontally and vertically */
+            background-color: #f0f0f0; /* Light grey background */
+            margin: 20px auto;  /* Center the container horizontally */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Resizable Box Example</h1>
+    <p>This example demonstrates a resizable container. You can drag the bottom-right corner of the box to resize it.</p>
+
+    <!-- Resizable container -->
+    <div class="element">
+        <p>This is some text inside a resizable container. You can resize this box by dragging the handle at the bottom-right corner. As you resize the box, the content inside will adjust accordingly, and scrollbars will appear if the content exceeds the new dimensions.</p>
+        <p>Try resizing this container and see how the content behaves!</p>
+    </div>
+
+</body>
+</html>
+

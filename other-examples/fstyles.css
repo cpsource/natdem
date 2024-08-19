@@ -1,0 +1,38 @@
+/* Basic styling for the page */
+body {
+    margin: 20px; /* Adding some margin around the page */
+    color: #333; /* Setting a dark grey text color */
+    line-height: 1.6; /* Adjusting line height for readability */
+    font-size: 24px; /* 18pt equivalent */
+}
+
+/* Styling the headline */
+h1 {
+    font-size: 2em; /* Making the main headline larger */
+    text-align: center; /* Centering the headline */
+    color: #444; /* Slightly lighter color for the headline */
+}
+
+/* Georgia font section */
+.georgia-section {
+    font-family: Georgia, serif; /* Georgia font with a serif fallback */
+    margin-bottom: 40px; /* Adding space below the section */
+}
+
+/* Times New Roman font section */
+.times-section {
+    font-family: "Times New Roman", Times, serif; /* Times New Roman with fallback to generic serif */
+}
+
+/* Styling section headers */
+h2 {
+    font-size: 1.5em; /* Making section headers slightly larger */
+    color: #555; /* Slightly lighter grey for section headers */
+    margin-bottom: 20px; /* Adding space below the section headers */
+}
+
+/* Styling paragraphs */
+p {
+    margin-bottom: 20px; /* Adding space between paragraphs */
+}
+

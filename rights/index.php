@@ -1,14 +1,21 @@
 <!-- Begin rights/index.php -->
 
 <?php
-  // rights/index.php
 
+
+  // rights/index.php
   //
   // get the body of an .html file
   // and display it
   //
 function get_story ( $fil )
 {
+// Get the current directory
+$current_directory = getcwd();
+
+// Display the current directory
+//echo "<p>at get_story - You are in the directory: " . $current_directory . "</p><br>";
+
 /*  echo "<center><h1>Getting Story $fil </h1></center><br><hr>"; */
 
   $flag = 0;
@@ -73,9 +80,9 @@ echo $goh;
 // onward with the main rights table
 //
 $tc = '<hr>
-       <table cellpadding="2" cellspacing="2" border="0" style="text-align: left; width: 700px;">
+       <table class="table-class" cellpadding="2" cellspacing="2" border="0" style="text-align: left; width: 700px;">
        <tbody>
-       <tr><td>';
+       <tr><td class="td-class">';
 $bc = '</tr></td>
        </tbody>
        </table>';

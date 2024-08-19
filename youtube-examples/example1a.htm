@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable and Resizable Box Example</title>
+    <style>
+        /* Styling for the resizable container element */
+        .element {
+            width: 300px;       /* Initial width of the container */
+            height: 150px;      /* Initial height of the container */
+            border: 2px solid #333; /* Border around the container */
+            padding: 10px;      /* Padding inside the container */
+            overflow: auto;     /* Show scrollbars if content overflows */
+            resize: both;       /* Allow the user to resize both horizontally and vertically */
+            background-color: #f0f0f0; /* Light grey background */
+            position: absolute; /* Position the container absolutely for dragging */
+            top: 50px;          /* Initial top position */
+            left: 50px;         /* Initial left position */
+        }
+
+        /* Handle for dragging */
+        .element-header {
+            width: 100%;
+            height: 30px;
+            background-color: #333;
+            color: white;
+            cursor: move;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Draggable and Resizable Box Example</h1>
+    <p>This example demonstrates a box that can be both resized and moved around the screen. You can drag the box by clicking and holding the header, and you can resize it by dragging the corner.</p>
+
+    <!-- Draggable and resizable container -->
+    <div class="element" id="draggable">
+        <div class="element-header">Drag me</div>
+        <p>This is a draggable and resizable box. You can resize it by dragging the handle at the bottom-right corner, and you can move it around by dragging the header.</p>
+    </div>
+
+    <script>
+        // Make the element draggable by the header
+        const draggableElement = document.getElementById("draggable");
+        const header = draggableElement.querySelector(".element-header");
+
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        header.addEventListener("mousedown", function(e) {
+            isDragging = true;
+            offsetX = e.clientX - draggableElement.getBoundingClientRect().left;
+            offsetY = e.clientY - draggableElement.getBoundingClientRect().top;
+            document.body.style.userSelect = "none";  // Prevent text selection during drag
+        });
+
+        document.addEventListener("mousemove", function(e) {
+            if (isDragging) {
+                draggableElement.style.left = `${e.clientX - offsetX}px`;
+                draggableElement.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener("mouseup", function() {
+            isDragging = false;
+            document.body.style.userSelect = "";  // Re-enable text selection after drag
+        });
+    </script>
+
+</body>
+</html>
+

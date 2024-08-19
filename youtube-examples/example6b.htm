@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:has() Pseudo-Class with CSS Variables</title>
+    <style>
+        /* Default CSS variables */
+        :root {
+            --background: white;
+            --textcolor: black;
+        }
+
+        /* Base styles for the body using CSS variables */
+        body {
+            background-color: var(--background);
+            color: var(--textcolor);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Styles for the select dropdown */
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Change background and text color when 'Dark' option is selected */
+        body:has(option[value="dark"]:checked) {
+            --background: black;
+            --textcolor: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <label for="theme">Choose a theme: </label>
+        <select id="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Column Layout</title>
+    <!-- Bootstrap CSS (from CDN) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-container {
+            width: 75%; /* Set the container to 75% of the viewport width */
+            margin: 0 auto; /* Center the container horizontally */
+            display: flex;
+            flex-wrap: wrap; /* Allow the columns to wrap on smaller screens */
+        }
+
+        .left-column {
+            flex: 0 0 20%; /* Take up 20% of the container's width */
+            max-width: 20%; /* Ensure the column does not exceed 20% */
+            background-color: #a3d9a5; /* Slightly darker green background */
+            padding: 20px;
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+
+        .right-column {
+            flex: 1; /* Take up the remaining space */
+            background-color: #f8f9fa; /* Light background color */
+            padding: 20px;
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+    </style>
+</head>
+<body>
+
+<div class="custom-container">
+    <div class="left-column">
+        Left Column (20%)
+    </div>
+    <div class="right-column">
+        Right Column (80%)
+    </div>
+</div>
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Box Shadow Example</title>
+    <style>
+        /* Styling for the container element */
+        .element {
+            width: 300px;           /* Width of the element */
+            height: 150px;          /* Height of the element */
+            border: 2px solid #333; /* Border around the element */
+            padding: 20px;          /* Padding inside the element */
+            background-color: #f0f0f0; /* Light grey background */
+            margin: 20px auto;      /* Center the element horizontally */
+            transition: box-shadow 0.3s ease; /* Smooth transition for the box-shadow */
+        }
+
+        /* Apply a box shadow on hover */
+        .element:hover {
+            box-shadow: 12px 4px 20px rgba(0, 0, 0, 0.3),
+	      -10px -10px 10px white; /* Box shadow when hovering */
+        }
+	body {
+		background-color: #f9f9f9f9;
+	}
+    </style>
+</head>
+<body>
+
+    <h1>Hover Box Shadow Example</h1>
+    <p>Hover over the box below to see the box shadow effect.</p>
+
+    <!-- Box with hover effect -->
+    <div class="element">
+        <p>This box will have a shadow when you hover over it. The shadow effect is achieved using the <code>box-shadow</code> CSS property.</p>
+    </div>
+
+</body>
+</html>
+

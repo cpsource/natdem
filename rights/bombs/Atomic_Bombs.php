@@ -18,7 +18,7 @@ See Also:<br>
 </a>&nbsp; <a href="https://en.wikipedia.org/wiki/Atomic_bomb">https://en.wikipedia.org/wiki/Atomic_bomb<br>
 </a><br>
 </span>Hiroshima</font></font><br>
-<img src="rights/bombs/bombcloud1.gif" title="Hiroshima Bomb Cloud"
+<img src="rights/bombs/bombcloud1.gif" title=""
  alt="Hiroshima Bomb Cloud" style="width: 250px; height: 299px;"><br>
 <font><font face="verdana, geneva, helvetica" size="2"><span
  style="font-weight: bold;"><br>
@@ -26,11 +26,16 @@ See Also:<br>
 <br>
 </span>
     Nagasaki
-<br>
+<?php
+// Display the current directory
+echo "<p>Atomic_Bombs.php is in the directory: " . $current_directory . "</p><br>";
+?>
+    <br>
 <br>
 
-<img src="/rights/bombs/nagasakicloud1.gif" title="Nagasaki Bomb Cloud"
- alt="Nagasaki Bomb Cloud" style="width: 250px; height: 299px;"><br>
+
+<img src="rights/bombs/nagasakicloud1.gif" title=""
+ alt="Nagasaki Bomb Cloud" style="width: 250px; height: 347px;"><br>
 <br>
 </font></font>
 <hr style="width: 100%; height: 2px;"><a href="/">Back to Top</a><br>

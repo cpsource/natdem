@@ -1,57 +1,68 @@
 <?php
-// find out who we are and set flag
+// Find out who we are and set flag
 $cpage_who = $_SERVER['SERVER_NAME'];
-//echo "cpage_who = $cpage_who<br>";
+$cp_debug = false;
 
-if ( 0 == strcmp('natdem.net',$cpage_who) || 0 == strcmp('www.natdem.net',$cpage_who) ) {
-  $cpage_remote_flag = 1;
-  $cp_url = 'http://www.natdem.net';
-  $cp_base = '/';
-  $cp_base_url = $cp_url . $cp_base;
-  $cp_host_type = 3;
-  $cp_path = $_SERVER['DOCUMENT_ROOT'] . "/";
-} else {
-if ( 0 == strcmp('natdem.ajept.com',$cpage_who) ) {
-  $cpage_remote_flag = 1;
-  $cp_url = 'http://natdem.ajept.com';
-  $cp_base = '/';
-  $cp_base_url = $cp_url . $cp_base;
-  $cp_host_type = 3;
-  $cp_path = $_SERVER['DOCUMENT_ROOT'] . '/natdem/';
-  //echo $_SERVER['DOCUMENT_ROOT'];
-} else {
-if ( 0 == strcmp('ajept.com',$cpage_who) || 0 == strcmp('ajept.com',$cpage_who) ) {
-  $cpage_remote_flag = 1;
-  $cp_url = 'http://ajept.com/natdem';
-  $cp_base = '/';
-  $cp_base_url = $cp_url . $cp_base;
-  $cp_host_type = 3;
-  $cp_path = $_SERVER['DOCUMENT_ROOT'] . '/natdem/';
-} else {
-if ( (0 == strcmp('host191.ipowerweb.com',$cpage_who)) ||
-     (0 == strcmp('www.unifyinggravity.com',$cpage_who)) ) {
-  $cpage_remote_flag = 1;
-  $cp_url = 'http://www.natdem.net';
-  $cp_base = '/';
-  $cp_base_url = $cp_url . $cp_base;
-  $cp_host_type = 3;
-  $cp_path = '/home/unifying/public_html/natdem/';
-} else {
-  $cpage_remote_flag = 0;
-  $cp_url = 'http://natdem';
-  $cp_base = '/';
-  $cp_base_url = $cp_url . $cp_base;
-  $cp_host_type = 4;
-  $cp_path = '/web0/natdem/';
+// Check if $cp_debug is true to enable debugging
+if (isset($cp_debug) && $cp_debug) {
+    echo "<pre>";
+    echo "cpage_who = $cpage_who<br>";
 }
+
+if (strcmp('natdem.net', $cpage_who) === 0 || strcmp('www.natdem.net', $cpage_who) === 0) {
+    $cpage_remote_flag = 1;
+    $cp_url = 'https://www.natdem.net';
+    $cp_base = '/';
+    $cp_base_url = $cp_url . $cp_base;
+    $cp_host_type = 3;
+    $cp_path = $_SERVER['DOCUMENT_ROOT'] . "/";
+} elseif (strcmp('natdem.ajept.com', $cpage_who) === 0) {
+    $cpage_remote_flag = 1;
+    $cp_url = 'https://natdem.ajept.com';
+    $cp_base = '/';
+    $cp_base_url = $cp_url . $cp_base;
+    $cp_host_type = 3;
+    $cp_path = $_SERVER['DOCUMENT_ROOT'] . '/natdem/';
+} elseif (strcmp('ajept.com', $cpage_who) === 0 || strcmp('ajept.com', $cpage_who) === 0) {
+    $cpage_remote_flag = 1;
+    $cp_url = 'https://ajept.com/natdem';
+    $cp_base = '/';
+    $cp_base_url = $cp_url . $cp_base;
+    $cp_host_type = 3;
+    $cp_path = $_SERVER['DOCUMENT_ROOT'] . '/natdem/';
+} elseif (strcmp('host191.ipowerweb.com', $cpage_who) === 0 || strcmp('www.unifyinggravity.com', $cpage_who) === 0) {
+    $cpage_remote_flag = 1;
+    $cp_url = 'https://www.natdem.net';
+    $cp_base = '/';
+    $cp_base_url = $cp_url . $cp_base;
+    $cp_host_type = 3;
+    $cp_path = '/home/unifying/public_html/natdem/';
+} else {
+    $cpage_remote_flag = 0;
+    $cp_url = 'https://natdem.org';
+    $cp_base = '/';
+    $cp_base_url = $cp_url . $cp_base;
+    $cp_host_type = 4;
+    $cp_path = getcwd() . '/';
 }
+
+$cp_url = '3.215.108.124';
+$cp_user = 'admin';
+$cp_pass = 'password123';
+$cp_getcwd = getcwd();
+
+if (isset($cp_debug) && $cp_debug) {
+    echo "cpage_remote_flag = $cpage_remote_flag<br>";
+    echo "cp_url = $cp_url<br>";
+    echo "cp_base = $cp_base<br>";
+    echo "cp_base_url = $cp_base_url<br>";
+    echo "cp_host_type = $cp_host_type<br>";
+    echo "cp_path = $cp_path<br>";
+    echo "cp_user = $cp_user<br>";
+    echo "cp_pass = $cp_pass<br>";
+    echo "cp_getcwd = $cp_getcwd<br>";
+    echo "</pre>";
 }
-}
-$cp_url = '15.222.150.160';
-$cp_url = "http://$cp_url";
-$cp_base = '/';
-$cp_base_url = $cp_url . $cp_base;
-$cp_host_type = 3;
-$cp_path = '/var/www/html/';
-$cp_debug = 0
+
 ?>
+

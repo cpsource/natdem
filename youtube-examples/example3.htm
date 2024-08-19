@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Toggle Example</title>
+    <style>
+        /* Initially hide the container */
+        .container {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Show the container when the checkbox is checked */
+        #mycheckbox:checked ~ .container {
+            display: block;
+        }
+	#mycheckbox {
+		display:none;
+	}
+    </style>
+</head>
+<body>
+
+    <h1>Show/Hide Content Example</h1>
+
+    <!-- Checkbox that controls the visibility of the container -->
+    <input type="checkbox" id="mycheckbox">
+    <label for="mycheckbox">Show More Content</label>
+
+    <!-- Container with hidden content -->
+    <div class="container">
+        <h2>Additional Content</h2>
+        <p>This content is initially hidden and will be displayed when the checkbox is checked. You can add any HTML elements here, such as text, images, or forms.</p>
+        <p>Toggle the checkbox to hide or show this content.</p>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,11 @@
+git clone https://github.com/SortedCoding/BeautifulLoginForm21.git
+
+Boxicons is an open-source icon set that contains over 1,500 icons designed for use by developers and designers to enhance the experience of websites and apps. The icons are available for personal and commercial use under the CC BY 4.0 license. Boxicons are available as a Figma Community plugin, an NPM package, and a Flutter plugin:
+Figma Community plugin
+The Boxicons Set by Iconduck plugin includes 1,500 solid icons that can be re-colored in Figma. The icons are well-organized and can be used for any design project, including profile and avatar icons, and liking and favoriting icons.
+NPM package
+The Boxicons package can be used in a project by running npm i boxicons. The icons are available as .svg files that are free to download.
+Flutter plugin
+The Boxicons plugin for Flutter allows users to take advantage of the Boxicons library. 
+
+

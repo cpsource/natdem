@@ -1,5 +1,7 @@
+<!--
 <img src="/images/WRPBookCover.jpg"
 title="" alt="Natural Democracy" style="width: 300px; height: 210px;"><br>
+-->
 
 <?php
 

@@ -1,52 +1,8 @@
 <?php
 
-// index.php
+$announce = getcwd() . '/rights/pressroom/usr/Book_Announced.html';
 
+//include $announce;
 
-//
-// get the body of an usr/issue.html file
-// and display it
-//
-function show_issue_body ( $fil )
-{
-  $flag = 0;
-  $handle = fopen ( $fil, "r");
-  if ( !$handle ) {
-    echo '<center><h1>No Issue</h1></center><br>';
-  } else {
-
-    // header
-    //echo '<div style="text-align: center;"><span style="font-weight: bold;"><big>Featured Story</big><br></span></div>';
-
-    // body
-    while (!feof ($handle)) {
-      $buffer = fgets($handle);
-      if ( 0 == $flag ) {
-	// find ## - summary
-	if ( 0 == strncasecmp($buffer,'##',2) ) {
-	  $flag = 1;
-	}
-	continue;
-      }
-      if ( 0 == strncasecmp($buffer,'</body>',7) ) {
-	break;
-      }
-      // display
-      echo $buffer;
-    }
-    fclose ($handle);
-  }
-}
-
-if ( isset($_GET['subpage']) ) {
-  // must display some subpage or the other
-  $fil = getcwd().'/rights/pressroom/usr/'.$_GET['subpage'].'.html';
-  show_issue_body($fil);
-} else {
-  include 'main.php';
-}
-
+echo 'announce = ' . $announce;
 ?>
-
-
-

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viewport Size</title>
+</head>
+<body>
+    <h1>Viewport Size</h1>
+    <p id="viewport-size"></p>
+
+    <script>
+        // Function to display the viewport size
+        function displayViewportSize() {
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+
+            var sizeText = 'Viewport Width: ' + width + 'px, Height: ' + height + 'px';
+
+            // Display the size in the paragraph element
+            document.getElementById('viewport-size').textContent = sizeText;
+        }
+
+        // Call the function to display the initial viewport size
+        displayViewportSize();
+
+        // Update the viewport size when the window is resized
+        window.onresize = displayViewportSize;
+    </script>
+</body>
+</html>
+

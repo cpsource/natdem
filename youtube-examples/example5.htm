@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass Effect Example</title>
+    <style>
+        /* Styling for the background image */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://www.w3schools.com/w3images/lights.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Styling for the glass effect container */
+        .glass {
+            width: 300px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px); /* Apply blur to the background */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Light shadow */
+            padding: 20px;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass">
+        <p>This is a glass effect!</p>
+    </div>
+
+</body>
+</html>
+

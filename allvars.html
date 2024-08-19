@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computed Styles Example</title>
+    <style>
+        /* Some basic styles for demonstration */
+        .example {
+            font-size: 20px;
+            color: blue;
+            margin: 15px;
+            padding: 10px;
+            background-color: lightgray;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="example">Hello, World!</h1>
+    <p>Open the browser console to see the computed styles for the element above.</p>
+
+    <script>
+        // Select the element
+        var element = document.querySelector('.example');
+
+        // Get computed styles
+        var computedStyle = window.getComputedStyle(element);
+
+        // Display all computed styles in the console
+        console.log("Computed styles for the selected element:");
+        for (var property in computedStyle) {
+            if (computedStyle.hasOwnProperty(property)) {
+                console.log(property + ': ' + computedStyle[property]);
+            }
+        }
+    </script>
+</body>
+</html>
+

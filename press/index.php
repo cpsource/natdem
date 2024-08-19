@@ -1,3 +1,3 @@
 <?php
-include '../rights/Not_Implemented.html';
+include '../rights/homepage/Not_Implemented.html';
 ?>

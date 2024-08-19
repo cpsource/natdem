@@ -4,3 +4,9 @@ order allow,deny
 deny from all
 satisfy all
 </Files>
+
+<FilesMatch "\.(html|htm|css|js)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+</FilesMatch>
+

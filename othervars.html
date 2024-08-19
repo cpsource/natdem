@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computed Styles Example</title>
+    <style>
+        .example {
+            font-size: 20px;
+            color: blue;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="example">Hello, World!</h1>
+    <p id="style-info"></p>
+
+    <script>
+        // Function to retrieve and display computed styles
+        function displayComputedStyles() {
+            var element = document.querySelector('.example');
+            var computedStyle = window.getComputedStyle(element);
+
+            var fontSize = computedStyle.fontSize;
+            var color = computedStyle.color;
+            var margin = computedStyle.margin;
+
+            var styleInfoText = 'Font Size: ' + fontSize + ', Color: ' + color + ', Margin: ' + margin;
+
+            // Display the computed styles in the paragraph element
+            document.getElementById('style-info').textContent = styleInfoText;
+        }
+
+        // Call the function to display the computed styles
+        displayComputedStyles();
+    </script>
+</body>
+</html>
+
