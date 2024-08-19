@@ -1,5 +1,6 @@
-#!"E:\xampp\perl\bin\perl.exe"
+#!/usr/bin/perl
 
 print "Content-Type: text/html\n\n";
 
 print "OK";
+

@@ -14,10 +14,6 @@
             background-color: #f8f9fa; /* Light background color */
             padding: 20px;
             box-sizing: border-box; /* Ensure padding is included in the width */
-	    <?php
-	    if ($cp_debug) {
-		echo "border: 8px solid blue;"; /* for debug, show our container */
-	    }
 	    ?>
         }
     </style>
