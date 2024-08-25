@@ -42,9 +42,9 @@ include 'config.php';
 
     <hr class="custom-hr">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="/js/bootstrap.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" nonce="your-nonce-value-here"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" nonce="your-nonce-value-here"></script>
+<script src="/js/bootstrap.js" nonce="your-nonce-value-here"></script>
 
 <!-- </body> -->
 
