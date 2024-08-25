@@ -1,3 +1,15 @@
+<?php
+// Generate a random nonce
+$nonce = base64_encode(random_bytes(16));
+
+// Set the CSP header with the dynamic nonce (For dynamic, move from .htaccess)
+header("Content-Security-Policy: script-src 'strict-dynamic' 'nonce-$nonce' 'unsafe-inline' http: https:; object-src 'none'; base-uri 'none'; require-trusted-types-for 'script'; report-uri https://csp.natdem.org;");
+
+//header("Content-Security-Policy: script-src 'strict-dynamic' nonce-$nonce 'unsafe-inline' http: https:; object-src 'none'; base-uri 'none'; require-trusted-types-for 'script'; report-uri https://csp.natdem.org;
+
+// Now you can use the nonce in your HTML
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +31,27 @@
     </style>
 </head>
 <body>
+
+<?php
+// Get the full domain name (e.g., csp.example.com)
+$fullDomain = $_SERVER['HTTP_HOST'];
+
+// Split the domain into parts
+$domainParts = explode('.', $fullDomain);
+
+// Check if the first part (subdomain) is "csp"
+if ($domainParts[0] === 'csp') {
+    // Code to execute if the subdomain is "csp"
+    echo '<h1>Welcome to the CSP subdomain</h1>';
+    // You can include other logic here, such as redirecting, logging, or serving specific content
+    // Redirect to a specific page if the subdomain is "csp"
+    header('Location: https://natdem.org');
+    exit();
+} else {
+    // Code to execute for other subdomains or the main domain
+    //echo '<h1>Welcome to the main site or another subdomain: ' . $fullDomain . '</h1>';
+}
+?>
 
 <!-- Include Header -->
 <?php include 'header.php'; ?>
@@ -53,7 +86,8 @@
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.1/js/bootstrap.bundle.min.js nonce="<?php echo $nonce; ?>">
+</script>
 
 </body>
 </html>
