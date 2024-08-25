@@ -16,7 +16,8 @@ header("Content-Security-Policy: script-src 'strict-dynamic' 'nonce-$nonce' 'uns
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS from jsDelivr CDN with correct integrity attribute -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <!-- Importing Google Font (Roboto) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -83,12 +84,45 @@ if ($domainParts[0] === 'csp') {
 <!-- Include Footer -->
 <?php include 'footer.php'; ?>
 
-<!-- Optional JavaScript; choose one of the two! -->
+  <!-- Trusted Types Policy Definition -->
+    <script nonce="<?php echo $nonce; ?>">
+        const policy = trustedTypes.createPolicy('default', {
+            createHTML: (input) => input
+        });
+    </script>
 
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.1/js/bootstrap.bundle.min.js nonce="<?php echo $nonce; ?>">
-</script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous" integrity="sha384-UG8ao2jwOWB7/oDdObZc6ItJmwUkR/PfMyt9Qs5AwX7PsnYn1CRKCTWyncPTWvaS" nonce="<?php echo $nonce; ?>"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" nonce="<?php echo $nonce; ?>"></script>
+
+<!--
+    <script nonce="<?php echo $nonce; ?>">
+    // Create a Trusted Types policy
+    const policy = window.trustedTypes.createPolicy('default', {
+        createHTML: (input) => input,  // You might want to sanitize or validate input here
+    });
+
+    $(document).ready(function() {
+        $('#myButton').click(function() {
+            // Use TrustedHTML to set innerHTML safely
+            const safeContent = policy.createHTML('<p>This is a safe content update.</p>');
+            document.getElementById('someElement').innerHTML = safeContent;
+        });
+    });
+    </script>
+-->
+
+<!--
+    <script nonce="<?php echo $nonce; ?>">
+    // Ensure jQuery is fully loaded before executing the script
+    $(document).ready(function() {
+        $('#myButton').click(function() {
+            alert('Button clicked!');
+        });
+    });
+    </script>
+-->
 
 </body>
 </html>
-
