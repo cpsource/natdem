@@ -8,7 +8,7 @@ Header set X-Content-Type-Options "nosniff"
 Header set X-XSS-Protection "1; mode=block"
 
 # Prevent Clickjacking
-Header set X-Frame-Options "DENY"
+Header set X-Frame-Options "SAMEORIGIN"
 
 # Referrer Policy
 Header set Referrer-Policy "no-referrer-when-downgrade"

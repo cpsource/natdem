@@ -2,7 +2,6 @@
 
 <?php
 
-
   // rights/index.php
   //
   // get the body of an .html file

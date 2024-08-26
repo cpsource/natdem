@@ -1,5 +1,6 @@
 <?php
 $cp_border = false;
+
 ?>
 
 <!-- <body> -->
