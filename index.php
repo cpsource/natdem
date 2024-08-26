@@ -3,7 +3,7 @@
 $nonce = base64_encode(random_bytes(16));
 
 // Set the CSP header with the dynamic nonce (For dynamic, move from .htaccess)
-header("Content-Security-Policy: frame-ancestors 'self' https://natdem.org; script-src 'strict-dynamic' 'nonce-$nonce' 'unsafe-inline' http: https:; object-src 'none'; base-uri 'none'; require-trusted-types-for 'script';  report-uri https://csp.natdem.org;");
+header("Content-Security-Policy: frame-ancestors 'self' https://natdem.org; script-src 'strict-dynamic' 'nonce-$nonce' 'unsafe-inline' http: https:; object-src 'self'; base-uri 'none'; require-trusted-types-for 'script';  report-uri https://csp.natdem.org;");
 
 //header("Content-Security-Policy: script-src 'strict-dynamic' nonce-$nonce 'unsafe-inline' http: https:; object-src 'none'; base-uri 'none'; require-trusted-types-for 'script'; report-uri https://csp.natdem.org;
 
