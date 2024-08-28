@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Content</title>
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+        // Include the marked library for converting Markdown to HTML
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+            script.onload = function() {
+                // Fetch and display the content of the attached HTML file
+                fetch('content.html')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        // Assuming the file could contain Markdown, convert it to HTML
+                        const html = marked.parse(data);
+                        document.getElementById('content').innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error('Error loading or parsing the file:', error);
+                        document.getElementById('content').innerHTML = '<p>An error occurred while loading the content. Please check the console for details.</p>';
+                    });
+            };
+            script.onerror = function() {
+                console.error('Error loading the marked.min.js script');
+                document.getElementById('content').innerHTML = '<p>Failed to load the Markdown processor. Please check your network connection.</p>';
+            };
+            document.head.appendChild(script);
+        })();
+    </script>
+</body>
+</html>
+

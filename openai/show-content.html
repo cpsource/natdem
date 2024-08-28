@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Content</title>
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+        // Fetch and display the content of the attached HTML file
+        fetch('content.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('content').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading the file:', error));
+    </script>
+</body>
+</html>
+
