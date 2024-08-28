@@ -6,9 +6,15 @@ Let's play with openai a bit.
   source openai/bin/activate
 ```
 
-2. Install Parsedown. Download the library from the Parsedown GitHub repository.
+2. Install Parsedown and Parsedown-extra. Download repository.
+
+```
+   git clone https://github.com/erusev/parsedown.git
+   git clone https://github.com/erusev/parsedown-extra.git
+```
+
 3. Get a project key from openai.
-4. Edit curly.sh with that key. The one in the file currently is bogus.
+4. Edit curly.sh with that key. The one here is bogus.
 5. query ChatGPT4:
 
 ```
