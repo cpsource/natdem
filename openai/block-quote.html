@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blockquote Example</title>
+    <title>Blockquote Example with Citation</title>
 </head>
 <body>
 
-<h1>Blockquote Example</h1>
+<h1>Blockquote Example with Citation</h1>
 
 <p>Here is a regular paragraph of text, introducing a quote:</p>
 
 <blockquote cite="https://www.example.com/inspiration">
     "The only limit to our realization of tomorrow is our doubts of today."
+    <footer>
+        &mdash; Franklin D. Roosevelt, <cite><a href="https://www.example.com/inspiration">source</a></cite>
+    </footer>
 </blockquote>
 
-<p>This quote is attributed to Franklin D. Roosevelt, and it serves as an inspiration to many.</p>
-
-<p>The blockquote above is an example of using HTML to semantically mark up a block of quoted text. The source of the quote is referenced using the <code>cite</code> attribute.</p>
+<p>This quote is attributed to Franklin D. Roosevelt, and the source is also displayed within the blockquote.</p>
 
 </body>
 </html>
