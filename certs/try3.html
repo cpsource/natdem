@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenPGP Test Page</title>
+    <script src="openpgp.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/openpgp@5.2.0/dist/openpgp.min.js"></script> -->
+</head>
+<body>
+    <h1>OpenPGP Test Page</h1>
+    
+    <h2>Private Key Information</h2>
+    <p id="privateKeyInfo">Loading...</p>
+
+    <h2>Public Key Information</h2>
+    <p id="publicKeyInfo">Loading...</p>
+
+    <h2>Public Key Validity</h2>
+    <p id="publicKeyValidity">Loading...</p>
+
+    <h2>Message Content (Hex)</h2>
+    <pre id="messageContent">Loading...</pre>
+
+    <h2>Signature (ASCII Armored)</h2>
+    <pre id="signature">Loading...</pre>
+
+    <h2>Verification Result</h2>
+    <p id="verificationResult">Loading...</p>
+
+    <script>
+        (async () => {
+            const privateKeyInfoElement = document.getElementById('privateKeyInfo');
+            const publicKeyInfoElement = document.getElementById('publicKeyInfo');
+            const publicKeyValidityElement = document.getElementById('publicKeyValidity');
+            const messageContentElement = document.getElementById('messageContent');
+            const signatureElement = document.getElementById('signature');
+            const verificationResultElement = document.getElementById('verificationResult');
+
+            try {
+                var readableStream = new ReadableStream({
+                    start(controller) {
+                        const messageData = new Uint8Array([0x01, 0x02, 0x03]);
+                        controller.enqueue(messageData);
+                        controller.close();
+                        messageContentElement.textContent = Array.from(messageData).map(b => b.toString(16).padStart(2, '0')).join(' ');
+                    }
+                });
+
+                const publicKeyArmored = `-----BEGIN PGP PUBLIC KEY BLOCK-----
+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
+=ZjSU
+                -----END PGP PUBLIC KEY BLOCK-----`;
+                const privateKeyArmored = `-----BEGIN PGP PRIVATE KEY BLOCK-----
+
+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
+40GTGdqRIw==
+=kUxa
+                -----END PGP PRIVATE KEY BLOCK-----`; // encrypted private key
+                const passphrase = `LicenseSigner`; // what the private key is encrypted with
+
+                const privateKey = await openpgp.decryptKey({
+                    privateKey: await openpgp.readPrivateKey({ armoredKey: privateKeyArmored }),
+                    passphrase
+                });
+
+                const publicKey = await openpgp.readKey({ armoredKey: publicKeyArmored });
+
+                // Display private key fingerprint
+                privateKeyInfoElement.textContent = 'Fingerprint: ' + privateKey.getFingerprint();
+
+                // Display public key fingerprint
+                publicKeyInfoElement.textContent = 'Fingerprint: ' + publicKey.getFingerprint();
+
+                // Display validity period of the public key
+                const primaryUser = publicKey.getPrimaryUser();
+                const creationDate = primaryUser.keyPacket.created;
+                const expirationTime = primaryUser.keyPacket.getExpirationTime();
+                const expirationDate = expirationTime ? new Date(creationDate.getTime() + expirationTime * 1000) : 'Never';
+
+                publicKeyValidityElement.textContent = `Created: ${creationDate.toUTCString()} - Expires: ${expirationDate === 'Never' ? 'Never' : expirationDate.toUTCString()}`;
+
+                const message = await openpgp.createMessage({ binary: readableStream }); // or createMessage({ text: ReadableStream<String> })
+                const signatureArmored = await openpgp.sign({
+                    message,
+                    signingKeys: privateKey
+                });
+
+                signatureElement.textContent = signatureArmored;
+
+                const verificationResult = await openpgp.verify({
+                    message: await openpgp.readMessage({ armoredMessage: signatureArmored }), // parse armored signature
+                    verificationKeys: publicKey
+                });
+
+                for await (const chunk of verificationResult.data) {}
+                // Note: you *have* to read `verificationResult.data` in some way or other,
+                // even if you don't need it, as that is what triggers the
+                // verification of the data.
+
+                try {
+                    await verificationResult.signatures[0].verified; // throws on invalid signature
+                    verificationResultElement.textContent = 'Signature valid. Signed by key id: ' + verificationResult.signatures[0].keyID.toHex();
+                } catch (e) {
+                    verificationResultElement.textContent = 'Signature could not be verified: ' + e.message;
+                }
+            } catch (error) {
+                verificationResultElement.textContent = 'Error: ' + error.message;
+                console.error(error);
+            }
+        })();
+    </script>
+</body>
+</html>
+

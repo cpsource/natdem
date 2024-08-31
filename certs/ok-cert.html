@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGP Certificate Validator</title>
+    <!-- Correct OpenPGP.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/openpgp@5.2.0/dist/openpgp.min.js"></script>
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/openpgp/5.2.0/openpgp.min.js"></script> -->
+</head>
+<body>
+
+<h1>PGP Certificate Validator</h1>
+
+<!-- Textarea to input the certificate -->
+<textarea id="certificate" rows="10" cols="70" placeholder="Paste your PGP certificate here..."></textarea>
+<br>
+<!-- Button to trigger validation -->
+<button onclick="validateCertificate()">Validate Certificate</button>
+
+<!-- Area to display validation result -->
+<p id="result"></p>
+
+<script>
+    async function validateCertificate() {
+        const cert = document.getElementById('certificate').value;
+
+        try {
+            // Read the certificate
+            const publicKey = await openpgp.readKey({ armoredKey: cert });
+            
+            // Validate the certificate
+            const isValid = publicKey.isFullyDecrypted && await publicKey.verifyPrimaryKey();
+
+            if (isValid) {
+                document.getElementById('result').innerText = "Certificate is valid!";
+            } else {
+                document.getElementById('result').innerText = "Certificate is not valid.";
+            }
+        } catch (error) {
+            document.getElementById('result').innerText = "Error validating certificate: " + error.message;
+        }
+    }
+</script>
+
+</body>
+</html>
+

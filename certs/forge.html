@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parse X.509 Certificate with Forge</title>
+    <script src="https://unpkg.com/node-forge@0.10.0/dist/forge.min.js"></script>
+</head>
+<body>
+    <h1>X.509 Certificate Parser</h1>
+
+    <h2>Paste your PEM-encoded Certificate</h2>
+    <textarea id="certInput" rows="10" cols="70" placeholder="-----BEGIN CERTIFICATE-----
+MIID3zCCAsegAwIBAgIUNakgP4wxXQft4saG9Sq423PAJHEwDQYJKoZIhvcNAQEL
+BQAwfzELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAlZUMRQwEgYDVQQHDAtCcm93bmlu
+Z3RvbjEVMBMGA1UECgwMQUlDb2RlRWRpdG9yMRMwEQYDVQQDDApDYWx2biBQYWdl
+MSEwHwYJKoZIhvcNAQkBFhJwYWdlLmNhbEBnbWFpbC5jb20wHhcNMjQwODMwMTEz
+MDUxWhcNMjQwOTI4MTEzMDUxWjB/MQswCQYDVQQGEwJVUzELMAkGA1UECAwCVlQx
+FDASBgNVBAcMC0Jyb3duaW5ndG9uMRUwEwYDVQQKDAxBSUNvZGVFZGl0b3IxEzAR
+BgNVBAMMCkNhbHZuIFBhZ2UxITAfBgkqhkiG9w0BCQEWEnBhZ2UuY2FsQGdtYWls
+LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAL5eoszlyV1CEBfK
+LwueIOsrqiAPBX2Q/bV/6DFIzs4zEWiEgrF5+s2ysTqxc3rT8+LArs37Qwdpd3w1
+7BbLADQwJ2ybdvAkpbUWbdkQY2/w+6ypyz2Eod7UGjCe7xxE69zoo2K79U9yawVf
+YIXUCjrY04MB9AmyPK48ZHbWyh6FojZ229ZNaOqMW3rS1Uy/zY/7NgJHqWRqEpFb
+58h9eJhwHKW460Wjs6fvmHDAsW4m98CO4qHtJHCNKiPyBFnqz82UWbq2oD1c3tGl
+VjQkhdZk0JzCaR+fvb6D5r784DPgmrwweN5XASG15+2xwXvAiir2nd2yskwPoLx8
+6kMsLT0CAwEAAaNTMFEwHQYDVR0OBBYEFJeeHz88oBSRtGDx31iU3EZ2LPRHMB8G
+A1UdIwQYMBaAFJeeHz88oBSRtGDx31iU3EZ2LPRHMA8GA1UdEwEB/wQFMAMBAf8w
+DQYJKoZIhvcNAQELBQADggEBAGlBOqoTcSf/OEu/v0JCyjHb1yTM7LHeeLPs0kJP
+J6+U5wop5JBXsBuBihgrZB74Ch7COQPqILe8MMK5AEL6X5km9yTVraqgs42lUJ1D
+Djw7/TxtrnKg0wVCld+1PBVlApPHtpnCVi5TUTgCq2mTcZRwk6KAmesHY2DyY7sT
+lZPZ4k/yN26wzh/OZ0hkxxo1g+uKfeTxZj2AGkEo5JrVvQZKiIfttqjnDwfD4Orh
+gW3Ha0MHni40CppdIukMAWpfgF7GBvkUQ8cDW1DDU2H5zYcYY4tcvNsKu6daFsp1
+1CXYBS0h6lEunpbtIgYXCxp5nXTl7/AoeiBKODmgPyuoZkE=
+-----END CERTIFICATE-----"></textarea>
+    <br><br>
+    <button onclick="parseCertificate()">Parse Certificate</button>
+
+    <h2>Certificate Information</h2>
+    <p><strong>Subject:</strong> <span id="subject"></span></p>
+    <p><strong>Issuer:</strong> <span id="issuer"></span></p>
+    <p><strong>Valid From:</strong> <span id="validFrom"></span></p>
+    <p><strong>Valid To:</strong> <span id="validTo"></span></p>
+
+    <script>
+        function parseCertificate() {
+            const certPem = document.getElementById('certInput').value;
+
+            try {
+                const cert = forge.pki.certificateFromPem(certPem);
+
+                // Display certificate details
+                document.getElementById('subject').textContent = cert.subject.attributes.map(attr => `${attr.name}=${attr.value}`).join(', ');
+                document.getElementById('issuer').textContent = cert.issuer.attributes.map(attr => `${attr.name}=${attr.value}`).join(', ');
+                document.getElementById('validFrom').textContent = cert.validity.notBefore.toUTCString();
+                document.getElementById('validTo').textContent = cert.validity.notAfter.toUTCString();
+            } catch (error) {
+                alert('Invalid Certificate: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
+

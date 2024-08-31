@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Validator</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsrsasign@10.5.23/jsrsasign-all-min.js"></script>
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.5.23/jsrsasign-all-min.js"></script> -->
+</head>
+<body>
+    <h1>OpenSSL Certificate Validator</h1>
+    <textarea id="certInput" rows="10" cols="80" placeholder="Paste your PEM certificate here"></textarea><br><br>
+    <button onclick="validateCertificate()">Validate Certificate</button>
+    <p id="result"></p>
+
+    <script>
+        function validateCertificate() {
+            const pemCert = document.getElementById('certInput').value;
+            const resultElement = document.getElementById('result');
+
+            if (!pemCert) {
+                resultElement.textContent = "Please paste a certificate.";
+                return;
+            }
+
+            try {
+                // Parse the PEM certificate
+                const cert = new X509();
+                cert.readCertPEM(pemCert);
+
+                // Check validity period
+                const notBefore = cert.getNotBefore(); // Get validity start date
+                const notAfter = cert.getNotAfter();   // Get validity end date
+                const now = new Date();
+
+                if (now < notBefore || now > notAfter) {
+                    resultElement.textContent = "Certificate is expired or not yet valid.";
+                    return;
+                }
+
+                // Display issuer information
+                const issuer = cert.getIssuerString();
+                const subject = cert.getSubjectString();
+
+                // Example of checking the signature algorithm
+                const sigAlgName = cert.getSignatureAlgorithmName();
+
+                // Further validation can be done here (e.g., checking the certificate chain)
+
+                // Display success message
+                resultElement.innerHTML = `
+                    <strong>Certificate is valid.</strong><br>
+                    Issuer: ${issuer}<br>
+                    Subject: ${subject}<br>
+                    Signature Algorithm: ${sigAlgName}<br>
+                    Valid from: ${notBefore.toUTCString()} to ${notAfter.toUTCString()}
+                `;
+            } catch (err) {
+                resultElement.textContent = "Certificate validation error: " + err.message;
+            }
+        }
+    </script>
+</body>
+</html>
+
