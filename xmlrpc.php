@@ -61,6 +61,14 @@
         </div>
 
         <?php
+        // Get the IP address of the user
+        $user_ip = $_SERVER['REMOTE_ADDR'];
+
+        // Log to syslog with IP address
+        openlog("xmlrpc.php", LOG_PID | LOG_PERROR, LOG_USER);
+        syslog(LOG_INFO, "'xmlrpc.php' executed by $user_ip.");
+        closelog();
+
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['firstSubmit'])) {
             $answer = $_POST['electionAnswer'];
             if ($answer == 'Yes') {
