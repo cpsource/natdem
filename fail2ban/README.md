@@ -55,3 +55,7 @@ Finally, unjail it with this command
 ```
 
 
+---
+Note: I've included my sshd_conf file. You might diff it with yours to close down your
+ssh. For example, I only allow certificate logins.
+
