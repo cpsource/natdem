@@ -1,0 +1,248 @@
+● fail2ban.service - Fail2Ban Service
+     Loaded: loaded (/lib/systemd/system/fail2ban.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2024-09-05 11:27:57 UTC; 2h 48min ago
+       Docs: man:fail2ban(1)
+   Main PID: 3885 (fail2ban-server)
+      Tasks: 31 (limit: 493)
+     Memory: 21.3M
+        CPU: 41.806s
+     CGroup: /system.slice/fail2ban.service
+             └─3885 /usr/bin/python3 /usr/bin/fail2ban-server -xf start
+
+Sep 05 11:27:57 ip-172-26-10-222 systemd[1]: fail2ban.service: Consumed 7.784s CPU time.
+Sep 05 11:27:57 ip-172-26-10-222 systemd[1]: Started Fail2Ban Service.
+Sep 05 11:27:57 ip-172-26-10-222 fail2ban-server[3885]: Server ready
+Status
+|- Number of jail:	14
+`- Jail list:	apache-auth, apache-badbots, apache-botsearch, apache-dta, apache-dta-1, apache-dta-2, apache-dta-4, apache-modsecurity, apache-nohome, apache-noscript, apache-overflows, apache-shellshock, sshd, systemd-bads
+Checking fail2ban status for apache-dta-1...
+Status for the jail: apache-dta-1
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- Journal matches:	
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+Checking fail2ban status for apache-dta-2...
+Status for the jail: apache-dta-2
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- File list:	/var/log/apache2/error.log
+`- Actions
+   |- Currently banned:	1
+   |- Total banned:	1
+   `- Banned IP list:	45.156.128.49
+Skipping apache-dta-3 as it is disabled in apache-dta-3//jail.d/apache-dta-3.conf
+Checking fail2ban status for apache-dta-4...
+Status for the jail: apache-dta-4
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- File list:	/var/log/apache2/error.log
+`- Actions
+   |- Currently banned:	1
+   |- Total banned:	1
+   `- Banned IP list:	185.199.102.224
+Skipping apache-dta as it is disabled in apache-dta//jail.d/apache-dta.conf
+Skipping gitea as it is disabled in gitea//jail.d/gitea.conf
+Checking fail2ban status for systemd-bads...
+Status for the jail: systemd-bads
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	12
+|  `- Journal matches:	
+`- Actions
+   |- Currently banned:	5
+   |- Total banned:	12
+   `- Banned IP list:	211.169.212.206 222.175.110.3 103.124.190.154 49.245.58.159 220.246.43.129
+Chain INPUT (policy ACCEPT 37715 packets, 3236K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+  654 64043 f2b-apache-dta-1  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 80,443
+  654 64043 f2b-apache-dta-4  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 80,443
+  654 64043 f2b-apache-dta-2  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 80,443
+20843 1615K f2b-sshd   tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 22
+    0     0 DROP       tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:21
+    0     0 DROP       tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:20
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 31027 packets, 5371K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain f2b-apache-dta-1 (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 REJECT     all  --  *      *       8.211.223.11         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       68.183.17.85         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       47.89.230.62         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       45.156.128.49        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       185.224.128.84       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       185.199.102.224      0.0.0.0/0            reject-with icmp-port-unreachable
+  654 64043 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain f2b-apache-dta-2 (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 REJECT     all  --  *      *       45.156.128.49        0.0.0.0/0            reject-with icmp-port-unreachable
+  654 64043 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain f2b-apache-dta-4 (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 REJECT     all  --  *      *       185.199.102.224      0.0.0.0/0            reject-with icmp-port-unreachable
+  654 64043 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain f2b-sshd (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    1    52 REJECT     all  --  *      *       220.246.43.129       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       49.245.58.159        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       103.124.190.154      0.0.0.0/0            reject-with icmp-port-unreachable
+    2   104 REJECT     all  --  *      *       222.175.110.3        0.0.0.0/0            reject-with icmp-port-unreachable
+    1    52 REJECT     all  --  *      *       211.169.212.206      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       223.84.33.2          0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       98.10.121.246        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       191.36.156.14        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       120.236.76.10        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       35.220.164.174       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       34.72.42.51          0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       220.246.43.92        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       96.10.249.114        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       96.1.40.151          0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       95.105.113.109       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       94.246.52.218        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       94.204.100.38        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       93.231.126.249       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       85.21.223.134        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       85.122.56.15         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       84.197.138.250       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       83.251.107.93        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       83.136.176.12        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       80.94.252.33         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       80.186.144.129       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       78.67.19.197         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       67.20.154.22         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       65.99.177.74         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       65.20.207.225        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       65.20.193.96         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       65.20.193.137        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       65.20.179.251        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       61.191.145.123       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       61.143.59.18         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       61.108.83.139        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       60.154.127.13        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       59.14.191.130        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       59.1.214.102         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       58.216.101.162       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       58.18.90.114         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       51.91.57.122         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       50.208.119.169       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       5.31.8.77            0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       45.173.89.242        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       45.170.50.2          0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       39.152.196.33        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       37.114.32.223        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       36.26.63.158         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       31.41.84.98          0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       27.64.204.96         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       24.50.230.82         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       223.84.251.73        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       223.84.144.119       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       222.188.5.70         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       222.170.47.230       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       221.195.208.238      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       221.178.176.85       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       220.194.181.150      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       220.135.162.68       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       218.64.168.12        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       218.206.54.226       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       218.190.226.204      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       213.55.85.202        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       213.230.127.217      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       211.43.137.26        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       203.124.50.151       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       202.175.76.242       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       201.44.225.52        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       201.173.130.76       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       200.58.107.41        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       200.216.15.134       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       200.159.156.154      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       198.91.200.139       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       196.191.212.238      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       196.189.124.218      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       195.158.19.6         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       193.13.169.40        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       191.36.151.234       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       188.151.63.219       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       188.10.88.230        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       187.9.20.246         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       187.19.47.79         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       186.233.219.34       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       185.193.240.244      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       184.74.212.29        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       183.67.5.146         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       183.247.194.8        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       183.233.85.194       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       183.230.215.11       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       182.76.36.62         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       182.74.149.130       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       182.134.239.97       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       180.66.152.98        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       178.248.85.24        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       177.5.229.122        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       177.38.236.163       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       177.107.172.118      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       176.12.132.63        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       176.113.228.235      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       175.201.203.220      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       175.116.85.203       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       173.88.254.225       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       173.199.240.40       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       172.248.47.114       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       171.34.73.139        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       165.16.44.5          0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       164.70.187.28        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       157.122.198.36       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       151.237.115.206      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       141.148.226.227      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       14.53.35.198         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       139.218.103.18       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       139.214.92.142       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       139.135.136.34       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       138.36.40.18         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       137.59.222.155       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       136.62.43.42         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       136.38.117.12        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       136.34.203.130       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       125.70.202.228       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       124.167.20.72        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       124.152.91.221       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       124.114.180.50       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       123.212.20.131       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       122.224.164.194      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       121.202.155.250      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       121.202.153.126      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       121.196.218.233      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       120.202.149.117      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       118.218.209.149      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       117.253.174.58       0.0.0.0/0            reject-with icmp-port-unreachable
+    1    60 REJECT     all  --  *      *       117.215.133.211      0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       116.86.168.10        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       116.72.16.245        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       116.132.42.170       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       115.247.148.18       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       113.25.250.81        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       112.102.48.29        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       111.70.23.236        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       111.59.174.229       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       111.42.132.19        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       111.40.7.6           0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       109.67.155.106       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       104.4.61.45          0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       103.68.52.210        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       103.174.34.49        0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       103.157.114.74       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       103.124.191.36       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       101.100.184.80       0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 REJECT     all  --  *      *       1.236.156.129        0.0.0.0/0            reject-with icmp-port-unreachable
+20838 1615K RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
