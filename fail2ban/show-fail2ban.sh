@@ -26,4 +26,5 @@ done
 
 # Display the iptables rules
 sudo iptables -L -n -v
+sudo ip6tables -L -n -v
 
