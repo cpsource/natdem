@@ -31,7 +31,7 @@ You can get around a ban by
   6. before you start seriously testing, do the following. It overrides anything fail2ban can do for your development box.
 
 ```
-  sudo iptables -I INPUT 1 -s <your-ip-address> -j ACCEPT
+  sudo iptables -I INPUT 1 -s `./who-am-i.py` -j ACCEPT
 ```
 
 Then, to recover, get to host and scan journalctl to find when you last logged into your account.
@@ -69,3 +69,46 @@ fail2ban only works after the first failed attempt, and only if you have a jail 
 Therefore, your underlying secuirty needs to be tight and you need to keep checking your logs.
 
 fail2ban will stop password guessing, as after your first attempt, you end up in jail.
+
+## Strange unresolved error messages
+
+### Chinese hackers ???
+
+This from journalctl -f log. It happened just as I opened the mariaDB port to the world (Security types
+would say this is a really BAD idea, btw). ChatGPT thought it was Chinese hackers. Is it? And, my home
+box is on starlink. So the Chinese must have been monitoring my traffic. I was saved because mariaDB
+comes with Reverse DNS enabled, and couldn't lookup the IP.
+
+mariadbd[31886]: 2024-09-06 11:49:52 31 [Warning] Host name 'customer.nwyynyx1.pop.starlinkisp.net' could not be resolved: Name or service not known
+
+### Probes of port ssh
+
+I've been running monitor_fail2ban.py. It watches journalctl -f, and tests against my fail2ban jail set.
+Here, we can see someone from IP 117.232.192.137, user 'user', tried to connect to sshd (port 22).
+But HA, I had two jails that cought the attempt, systemd-bads, and sshd both put this guy in jail.
+
+Journalctl line: Sep 06 11:56:55 ip-172-26-10-222 sshd[32446]: Invalid user user from 117.232.192.137 port 48763
+OK: systemd-bads
+OK: sshd
+
+I did a dig -x 117.232.192.137 and received the following. Note the PTR record should have had it's IP but it did not.
+Next, I'm going to try to write to hostmaster@bsnl.in and complain. (The mail bounced)
+
+; <<>> DiG 9.18.28-0ubuntu0.22.04.1-Ubuntu <<>> -x 117.232.192.137
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 33712
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;137.192.232.117.in-addr.arpa.  IN      PTR
+
+;; AUTHORITY SECTION:
+232.117.in-addr.arpa.   1800    IN      SOA     ns11.bsnl.in. hostmaster.bsnl.in. 2023110701 3600 600 3600000 3600
+
+;; Query time: 299 msec
+;; SERVER: 10.255.255.254#53(10.255.255.254) (UDP)
+;; WHEN: Fri Sep 06 09:11:56 EDT 2024
+;; MSG SIZE  rcvd: 116

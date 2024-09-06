@@ -41,4 +41,45 @@ satisfy all
     Header set Pragma "no-cache"
 </FilesMatch>
 
+<Directory "/var/www/html/Edwards">
+  Order Allow,Deny
+  Deny from all
+</Directory>
+
+<Directory "/var/www/html/bugs">
+  Order Allow,Deny
+  Deny from all
+</Directory>
+
+<Directory "/var/www/html/contacts">
+  Order Allow,Deny
+  Deny from all
+</Directory>
+
+<Directory "/var/www/html/downloads">
+  Order Allow,Deny
+  Deny from all
+</Directory>
+
+<Directory "/var/www/html/forum">
+  Order Allow,Deny
+  Deny from all
+</Directory>
+
+<Directory "/var/www/html/openai">
+  Order Allow,Deny
+  Deny from all
+</Directory>
+
+<Directory "/var/www/html/other-examples">
+  Order Allow,Deny
+  Deny from all
+</Directory>
+
+<Directory "/var/www/html/youtube-examples">
+  Order Allow,Deny
+  Deny from all
+</Directory>
+
+ErrorDocument all 404 https://natdem.org/xmlrpc.php
 # Header set Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'self';"
