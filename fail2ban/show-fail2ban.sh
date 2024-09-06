@@ -24,6 +24,10 @@ for dir in */; do
     fi
 done
 
+# do a special because sshd doesn't use the std paths
+#echo "Checking fail2ban status for sshd..."
+#sudo fail2ban-client status sshd
+
 # Display the iptables rules
 sudo iptables -L -n -v
 sudo ip6tables -L -n -v
