@@ -38,7 +38,7 @@ if [ -n "$ip_address" ]; then
     
     # If Developer_IP is set, perform SSH with SendEnv
     echo "Initiating SSH with Developer_IP..."
-    ssh -o SendEnv=Developer_IP ubuntu@natdem.org
+    ssh -o SendEnv=Developer_IP ubuntu@natdem.org '~/natdem/fail2ban/open-developer-port.sh'
 else
     echo "No IP address found in the script output."
 fi
