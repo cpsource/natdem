@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /css/
+Disallow: /tmp/
+Disallow: /js/
+Disallow: /private/
+
+# Sitemap URL
+Sitemap: https://natdem.org/sitemap.xml
