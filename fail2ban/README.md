@@ -1,4 +1,4 @@
-# fail2ban support
+# Extra fail2ban support
 
 This guy allows us to manage our modifications to fail2ban with git.
 
@@ -8,7 +8,7 @@ This guy allows us to manage our modifications to fail2ban with git.
 In each <name>, there is an ./install.sh that installs that particular entry.
 In each <name>, there is an ./test.sh that will check your failregex if there is a testlog.log
 
----
+## Workflow
 
 The workflow is:
   1. do the new.sh for your new jail
@@ -16,10 +16,11 @@ The workflow is:
   3. run the test via test.sh
   4. run install.sh 
 
----
-Note: monitor_fail2ban.py can be run on a terminal. It monitors journalctl and checks that exceptions are covered by rules.
+## Notes
 
-## Note: MAKE SURE you have alternative ip addresses into your host. A couple of times, I locked myself out by banning my development box.
+###Note: monitor_fail2ban.py can be run on a terminal. It monitors journalctl and checks that exceptions are covered by rules.
+
+### Note: MAKE SURE you have alternative ip addresses into your host. A couple of times, I locked myself out by banning my development box.
 
 You can get around a ban by
   1. use a vpn to come at the host from a different ip
@@ -54,8 +55,17 @@ Finally, unjail it with this command
   sudo fail2ban-client <jail-name> unbanip <ip address>
 ```
 
+## sshd_conf
 
----
 Note: I've included my sshd_conf file. You might diff it with yours to close down your
 ssh. For example, I only allow certificate logins.
 
+## Is all this worth it?
+
+Yes! Any port you open to the outside world will be attacked one way or the other. I ran these fail2ban mods and
+I had over a hundred ip addresses banned.
+
+fail2ban only works after the first failed attempt, and only if you have a jail that detects that attempt.
+Therefore, your underlying secuirty needs to be tight and you need to keep checking your logs.
+
+fail2ban will stop password guessing, as after your first attempt, you end up in jail.
