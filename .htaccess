@@ -41,5 +41,17 @@ satisfy all
     Header set Pragma "no-cache"
 </FilesMatch>
 
+ErrorDocument 400 https://natdem.org/xmlrpc.php
+ErrorDocument 401 https://natdem.org/xmlrpc.php
+ErrorDocument 403 https://natdem.org/xmlrpc.php
 ErrorDocument 404 https://natdem.org/xmlrpc.php
+ErrorDocument 405 https://natdem.org/xmlrpc.php
+ErrorDocument 408 https://natdem.org/xmlrpc.php
+ErrorDocument 409 https://natdem.org/xmlrpc.php
+ErrorDocument 410 https://natdem.org/xmlrpc.php
+#ErrorDocument 418 https://natdem.org/xmlrpc.php
+ErrorDocument 429 https://natdem.org/xmlrpc.php
+
+ErrorDocument 500 https://natdem.org/xmlrpc.php
+
 # Header set Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'self';"
