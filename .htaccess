@@ -41,4 +41,5 @@ satisfy all
     Header set Pragma "no-cache"
 </FilesMatch>
 
+ErrorDocument all 404 https://natdem.org/xmlrpc.php
 # Header set Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'self';"
