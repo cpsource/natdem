@@ -33,4 +33,9 @@ Chain INPUT (policy ACCEPT 91509 packets, 11M bytes)
 
  1. The patches are marked with the string '#Patch' in the code.
  2. As usual, chatGPT4 did the heavy lifting. See README-patches-chatGPT-help.md for my dialog with it for this patch.
- 3. I also killed off ftp, using ports 20 and 21. 
+ 3. I also killed off ftp, using ports 20 and 21.
+ 4. My billable time on this was three hours.
+ 
+### References
+
+https://github.com/fail2ban/fail2ban.git
