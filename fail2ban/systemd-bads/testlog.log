@@ -18,3 +18,4 @@ Sep 06 23:43:21 ip-172-26-10-222 mariadbd[31886]: 2024-09-06 23:43:21 339 [Warni
 Sep 06 23:43:23 ip-172-26-10-222 mariadbd[31886]: 2024-09-06 23:43:23 340 [Warning] Aborted connection 340 to db: 'unconnected' user: 'unauthenticated' host: '199.45.154.124' (This connection closed normally without authentication)
 Sep 06 23:43:25 ip-172-26-10-222 mariadbd[31886]: 2024-09-06 23:43:25 341 [Warning] Aborted connection 341 to db: 'unconnected' user: 'unauthenticated' host: '199.45.154.124' (This connection closed normally without authentication)
 Sep 06 23:43:28 ip-172-26-10-222 mariadbd[31886]: 2024-09-06 23:43:28 342 [Warning] Aborted connection 342 to db: 'unconnected' user: 'unauthenticated' host: '199.45.154.124' (This connection closed normally without authentication)
+Sep 07 07:43:48 ip-172-26-10-222 sshd[53517]: Connection reset by 198.235.24.150 port 57610 [preauth]
