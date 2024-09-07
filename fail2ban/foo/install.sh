@@ -5,7 +5,7 @@
 # 1. Copies the file 'jail.d/<current_dir_name>.conf' to '/etc/fail2ban/jail.d/'
 # 2. Copies the file 'filter.d/<current_dir_name>.conf' to '/etc/fail2ban/filter.d/'
 #
-# The script checks if the contents of the source and destination files differ before copying.
+# The script checks if the contents are different before copying.
 # If the contents are identical, no copying is performed.
 #
 # After copying, the ownership of the copied files is set to root:root.

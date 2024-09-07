@@ -3,14 +3,15 @@
 # Define the jail name
 JAIL_NAME="foo"
 
-# Create the directory for the jail
-mkdir -p "$JAIL_NAME"
+# Create the directory structure for $JAIL_NAME
+mkdir -p "$JAIL_NAME"/jail.d
+mkdir -p "$JAIL_NAME"/filter.d
 
 # Change to the newly created directory
 cd "$JAIL_NAME" || { echo "Failed to change directory to $JAIL_NAME"; exit 1; }
 
 # Create the jail configuration file in the jail directory
-cat <<EOF > jail.d.conf
+cat <<EOF > jail.d/foo.conf
 [$JAIL_NAME]
 enabled = true
 filter = $JAIL_NAME
@@ -23,7 +24,7 @@ action = iptables[name=SSH, port=ssh, protocol=tcp]
 EOF
 
 # Create the filter configuration file in the jail directory
-cat <<EOF > filter.d.conf
+cat <<EOF > filter.d/foo.conf
 [Definition]
 failregex = ^%(__prefix_line)sInvalid user .* from <HOST> port [0-9]+
 ignoreregex =
