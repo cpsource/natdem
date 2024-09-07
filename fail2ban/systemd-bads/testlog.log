@@ -14,4 +14,7 @@ Nov 11 08:17:04 ip-172-26-2-198 sshd[1831311]: Unable to negotiate with 194.26.2
 Nov 11 08:17:06 ip-172-26-2-198 sshd[1831313]: Unable to negotiate with 194.26.229.35 port 54928: no matching key exchange method found. Their offer: diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1 [preauth]
 Nov 11 08:16:45 ip-172-26-2-198 sshd[1831286]: Unable to negotiate with 194.26.229.35 port 60614: no matching key exchange method>
 Sep 05 15:30:38 ip-172-26-10-222 sshd[8991]: banner exchange: Connection from 40.78.126.210 port 34394: invalid format
-Sep 05 15:58:28 ip-172-26-10-222 sshd[9958]: error: kex_exchange_identification: Connection closed by remote host
+Sep 06 23:43:21 ip-172-26-10-222 mariadbd[31886]: 2024-09-06 23:43:21 339 [Warning] Aborted connection 339 to db: 'unconnected' user: 'unauthenticated' host: '199.45.154.124' (This connection closed normally without authentication)
+Sep 06 23:43:23 ip-172-26-10-222 mariadbd[31886]: 2024-09-06 23:43:23 340 [Warning] Aborted connection 340 to db: 'unconnected' user: 'unauthenticated' host: '199.45.154.124' (This connection closed normally without authentication)
+Sep 06 23:43:25 ip-172-26-10-222 mariadbd[31886]: 2024-09-06 23:43:25 341 [Warning] Aborted connection 341 to db: 'unconnected' user: 'unauthenticated' host: '199.45.154.124' (This connection closed normally without authentication)
+Sep 06 23:43:28 ip-172-26-10-222 mariadbd[31886]: 2024-09-06 23:43:28 342 [Warning] Aborted connection 342 to db: 'unconnected' user: 'unauthenticated' host: '199.45.154.124' (This connection closed normally without authentication)
