@@ -15,3 +15,5 @@ done
 
 echo "All install scripts completed."
 
+sudo systemctl restart fail2ban
+echo "fail2ban restarted"
