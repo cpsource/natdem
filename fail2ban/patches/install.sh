@@ -23,8 +23,8 @@ for conf_file in "$DIR"/*.conf; do
         # Copy the new conf file to /etc/fail2ban/action.d
         cp "$conf_file" "/etc/fail2ban/action.d/$filename"
         
-        # Change the ownership to ubuntu:ubuntu
-        chown ubuntu:ubuntu "/etc/fail2ban/action.d/$filename"
+        # Change the ownership to root:root
+        chown root:root "/etc/fail2ban/action.d/$filename"
     else
         echo "No .conf files found in the current directory."
     fi
