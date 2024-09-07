@@ -1,9 +1,14 @@
 #!/bin/bash
-# This script copies two files based on the current directory name to their respective destinations:
-# 1. 'jail.d/<current_dir_name>.conf' to '/etc/fail2ban/jail.d/'
-# 2. 'filter.d/<current_dir_name>.conf' to '/etc/fail2ban/filter.d/'
-# Before copying, it checks if the file contents are different.
-# If they are the same, the script does not perform the copy.
+# This script automates the process of copying two configuration files to their respective 
+# Fail2ban directories based on the current directory name:
+# 
+# 1. Copies the file 'jail.d/<current_dir_name>.conf' to '/etc/fail2ban/jail.d/'
+# 2. Copies the file 'filter.d/<current_dir_name>.conf' to '/etc/fail2ban/filter.d/'
+#
+# The script checks if the contents of the source and destination files differ before copying.
+# If the contents are identical, no copying is performed.
+#
+# After copying, the ownership of the copied files is set to root:root.
 
 # Get the current directory name
 current_dir_name=$(basename "$PWD")
@@ -22,6 +27,9 @@ else
     # Perform the copy for jail.d with sudo
     sudo cp "$source_jail_file" "$destination_jail_file"
     echo "File copied from $source_jail_file to $destination_jail_file."
+    # Set ownership to root:root
+    sudo chown root:root "$destination_jail_file"
+    echo "Ownership of $destination_jail_file set to root:root."
 fi
 
 # Check if file contents are different for filter.d
@@ -31,5 +39,8 @@ else
     # Perform the copy for filter.d with sudo
     sudo cp "$source_filter_file" "$destination_filter_file"
     echo "File copied from $source_filter_file to $destination_filter_file."
+    # Set ownership to root:root
+    sudo chown root:root "$destination_filter_file"
+    echo "Ownership of $destination_filter_file set to root:root."
 fi
 
