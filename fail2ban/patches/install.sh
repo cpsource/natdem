@@ -30,4 +30,7 @@ for conf_file in "$DIR"/*.conf; do
     fi
 done
 
+# restart to get new rules
+systemctl restart fail2ban
+
 echo "Installation and backup complete."
