@@ -18,7 +18,7 @@ Chain INPUT (policy ACCEPT 91509 packets, 11M bytes)
     0     0 f2b-sshd   tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 22
 ```
 
-## How to install
+### How to install
 
   It's easy, just do
 
@@ -29,7 +29,7 @@ Chain INPUT (policy ACCEPT 91509 packets, 11M bytes)
   Don't worry, the install scrip makes .orig copies of the etc file before it changes them
   so you can always revert.
 
-## Notes
+### Notes
 
  1. The patches are marked with the string '#Patch' in the code.
  2. As usual, chatGPT4 did the heavy lifting. See README-patches-chatGPT-help.md for my dialog with it for this patch.
