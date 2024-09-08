@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 class Blacklist:
     def __init__(self):
         # Initialize an empty array to store blacklisted IPs

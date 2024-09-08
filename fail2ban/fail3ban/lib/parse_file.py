@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 class SectionParser:
     def __init__(self, filename):
         self.filename = filename

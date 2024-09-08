@@ -1,4 +1,3 @@
-#!/bin/python3
 class Whitelist:
     def __init__(self):
         # Initialize an empty array to store whitelisted IPs
