@@ -26,7 +26,7 @@ EOF
 # Create the filter configuration file in the jail directory
 cat <<EOF > filter.d/nobody.conf
 [Definition]
-failregex = ^%(__prefix_line)sUser nobody from <HOST> not allowed because not listed in AllowUsers
+failregex = .*User nobody from <HOST> not allowed because not listed in AllowUsers
 ignoreregex =
 EOF
 

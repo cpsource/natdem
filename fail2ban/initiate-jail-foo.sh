@@ -13,7 +13,7 @@ cd "$JAIL_NAME" || { echo "Failed to change directory to $JAIL_NAME"; exit 1; }
 # Create the jail configuration file in the jail directory
 cat <<EOF > jail.d/foo.conf
 [$JAIL_NAME]
-enabled = true
+enabled = false
 filter = $JAIL_NAME
 port = ssh
 logpath = $(pwd)/testlog.log
@@ -26,7 +26,7 @@ EOF
 # Create the filter configuration file in the jail directory
 cat <<EOF > filter.d/foo.conf
 [Definition]
-failregex = ^%(__prefix_line)sInvalid user .* from <HOST> port [0-9]+
+failregex = .*Invalid user .* from <HOST> port [0-9]+
 ignoreregex =
 EOF
 
