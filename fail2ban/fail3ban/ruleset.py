@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import os
+import glob
 
 class Ruleset:
     def __init__(self, debug=False):
@@ -7,11 +8,11 @@ class Ruleset:
         self.rulesets = []
         self.debug = debug  # Set the debug flag
 
-        # Process each *.conf file in the current directory
-        for filename in os.listdir('.'):
-            if filename.endswith('.conf'):
-                self.debug_print(f"Processing file {filename}")
-                self.process_file(filename)
+        # Process each *.conf file in the filter.d/ directory
+        conf_files = glob.glob('filter.d/*.conf')  # Look for .conf files in filter.d directory
+        for filename in conf_files:
+            self.debug_print(f"Processing file {filename}")
+            self.process_file(filename)
 
     def debug_print(self, message):
         # Helper method to print debug messages only if debug is True
@@ -41,7 +42,7 @@ class Ruleset:
 
                     # If we are inside the [Definition] section, process the file
                     if inside_definition:
-                        # Check for the enabled flag (enforce either true or false)
+                        # Check for the enabled flag
                         if "enabled" in line:
                             if "true" in line.lower():
                                 enabled = True
@@ -59,22 +60,30 @@ class Ruleset:
                         if line.startswith("failregex"):
                             # Grab the failregex line and subsequent lines
                             regex_part = line.split('=')[1].strip()  # Extract the regex part
+                            regex_part = self.adjust_regex(regex_part)
                             regexes.append(regex_part)
                             self.debug_print(f"Found failregex: {regex_part}")
                         elif line.startswith("^") or line.startswith(" "):  # Subsequent regex lines
-                            regexes.append(line.strip())
-                            self.debug_print(f"Found subsequent regex: {line.strip()}")
+                            regex_part = self.adjust_regex(line.strip())
+                            regexes.append(regex_part)
+                            self.debug_print(f"Found subsequent regex: {regex_part}")
 
                 # Add the filename (minus extension), enabled flag, and regexes to the ruleset
                 if regexes:
                     self.debug_print(f"Appending ruleset for {filename}")
-                    self.rulesets.append([os.path.splitext(filename)[0], enabled, regexes])
+                    self.rulesets.append([os.path.splitext(os.path.basename(filename))[0], enabled, regexes])
                 else:
                     self.debug_print(f"No regexes found in {filename}")
         except FileNotFoundError:
             print(f"Error: {filename} file not found.")
         except Exception as e:
             print(f"An error occurred while processing {filename}: {e}")
+
+    def adjust_regex(self, regex):
+        # Replace ^ or ^ followed by spaces with \s* to skip 0 or more spaces
+        if regex.startswith("^"):
+            return r"\s*" + regex[1:].lstrip()  # Replace ^ and trim any leading spaces after it
+        return regex
 
     def get_rulesets(self):
         # Return the list of all rulesets
