@@ -1,2 +1,4 @@
 Journalctl line: Sep 07 07:43:48 ip-172-26-10-222 sshd[53517]: Connection reset by 198.235.24.150 port 57610 [preauth]
 Journalctl line: Sep 07 16:05:53 ip-172-26-10-222 sshd[68774]: Connection closed by invalid user default 65.20.193.96 port 42460 [preauth]
+sshd[1]:  User nobody from 116.226.96.183 not allowed because not listed in AllowUsers
+
