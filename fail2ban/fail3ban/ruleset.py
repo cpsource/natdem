@@ -3,7 +3,7 @@ import os
 
 class Ruleset:
     def __init__(self, debug=False):
-        # Initialize an empty array to store filename and associated regex rules
+        # Initialize an empty array to store filename, enabled flag, and associated regex rules
         self.rulesets = []
         self.debug = debug  # Set the debug flag
 
@@ -24,6 +24,7 @@ class Ruleset:
                 self.debug_print(f"Opened file {filename}")
                 inside_definition = False
                 regexes = []
+                enabled = False  # Default enabled flag to False
 
                 for line in file:
                     # Strip whitespace from the line
@@ -38,8 +39,17 @@ class Ruleset:
                         self.debug_print("Entered [Definition] section")
                         continue
 
-                    # If we are inside the [Definition] section, process failregex
+                    # If we are inside the [Definition] section, process the file
                     if inside_definition:
+                        # Check for the enabled flag (enforce either true or false)
+                        if "enabled" in line:
+                            if "true" in line.lower():
+                                enabled = True
+                                self.debug_print("Enabled flag set to True")
+                            elif "false" in line.lower():
+                                enabled = False
+                                self.debug_print("Enabled flag set to False")
+
                         # If a new section starts, stop processing
                         if line.startswith('[') and line.endswith(']'):
                             self.debug_print(f"Found new section {line}, stopping regex collection")
@@ -54,11 +64,11 @@ class Ruleset:
                         elif line.startswith("^") or line.startswith(" "):  # Subsequent regex lines
                             regexes.append(line.strip())
                             self.debug_print(f"Found subsequent regex: {line.strip()}")
-                
-                # Add the filename (minus extension) and regexes to the ruleset
+
+                # Add the filename (minus extension), enabled flag, and regexes to the ruleset
                 if regexes:
                     self.debug_print(f"Appending ruleset for {filename}")
-                    self.rulesets.append([os.path.splitext(filename)[0], regexes])
+                    self.rulesets.append([os.path.splitext(filename)[0], enabled, regexes])
                 else:
                     self.debug_print(f"No regexes found in {filename}")
         except FileNotFoundError:
@@ -74,13 +84,13 @@ class Ruleset:
         # Return the ruleset for a specific filename (without .conf extension)
         for ruleset in self.rulesets:
             if ruleset[0] == filename:
-                return ruleset[1]  # Return the list of regexes for the given filename
+                return ruleset  # Return the [filename, enabled, regexes] for the given filename
         return None  # Return None if the filename doesn't exist
 
 # Example usage
 if __name__ == "__main__":
     # Initialize with debug=True to enable debug prints
-    rs = Ruleset(debug=False)
+    rs = Ruleset(debug=True)
     print(rs.get_rulesets())
 
     # Example of retrieving a specific ruleset by filename (without .conf)
