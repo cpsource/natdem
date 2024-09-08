@@ -10,18 +10,16 @@ sudo systemctl status fail2ban
 # Show the overall fail2ban status
 sudo fail2ban-client status
 
-# Loop through each subdirectory and check for the enabled status in jail.d/<dir_name>.conf
-for dir in */; do
-    dir_name=$(basename "$dir")
-    conf_file="$dir/jail.d/$dir_name.conf"
-    
-    # Check if the configuration file exists and contains 'enabled = false' with flexible spaces/tabs
-    if [ -f "$conf_file" ] && egrep -q '^[[:space:]]*enabled[[:space:]]*=[[:space:]]*false' "$conf_file"; then
-        echo "Skipping $dir_name as it is disabled in $conf_file"
-    else
-        echo "Checking fail2ban status for $dir_name..."
-        sudo fail2ban-client status "$dir_name"
-    fi
+# Now show all the jails
+# Get the list of jails from fail2ban-client status
+jail_list=$(sudo fail2ban-client status | grep 'Jail list:' | cut -d':' -f2 | tr -d ' ')
+# Convert jail list to an array by splitting on commas
+IFS=',' read -r -a jails <<< "$jail_list"
+# Loop through each jail and get its status
+for jail in "${jails[@]}"; do
+    echo "Checking status for jail: $jail"
+    sudo fail2ban-client status "$jail"
+    echo "---------------------------------"
 done
 
 # do a special because sshd doesn't use the std paths
