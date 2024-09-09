@@ -2,6 +2,9 @@
 
 import sys
 import os
+import threading
+import time
+from datetime import datetime
 
 #
 # Allow our foundation classes to be loaded
@@ -42,6 +45,50 @@ def check_var(var):
 #print(check_var(None))    # False
 #print(check_var(42))      # 42 (since var is not None or bool)
 #print(check_var("hello")) # "hello" (since var is not None or bool)
+
+def manage_bans(database_class, iptables_class):
+    """Manage bans by ensuring non-banned IPs are in iptables, and expired IPs are removed."""
+    
+    # Initialize the database connection and iptables class
+    db = database_class()
+    db.initialize('bans.db')  # Assuming SQLite, update as needed for MariaDB
+
+    ipt = iptables_class()
+
+    # 1. Initial step: ensure non-banned IPs are in iptables
+    print("Ensuring non-banned IPs are in iptables...")
+    non_banned_records = db.get_expired_records()  # Method should return non-banned IPs
+    for record in non_banned_records:
+        ip_addr, is_ipv6, jail = record
+        # Ensure the IP is in iptables
+        if not ipt.is_in_chain(ip_addr):  # Assuming iptables class has this method
+            ipt.add_chain_to_INPUT(ip_addr, jail)
+
+    # 2. Loop forever to scan for expired bans
+    while True:
+        print("Scanning for expired bans...")
+        
+        # Query for expired bans
+        expired_bans = db.get_expired_records()  # Get expired IPs from database
+        for record in expired_bans:
+            ip_addr, is_ipv6, jail = record
+            
+            # Remove from iptables
+            ipt.remove_chain(ip_addr)
+            print(f"Removed IP {ip_addr} from iptables.")
+            
+            # Remove from the database
+            db.remove_record(ip_addr, jail)
+            print(f"Removed IP {ip_addr} from database.")
+        
+        # Sleep for an hour
+        print("Sleeping for 1 hour...")
+        time.sleep(3600)
+
+# Example usage in a thread
+def start_manage_bans():
+    thread = threading.Thread(target=manage_bans, args=(SQLiteDB, iptables))  # Or use mariaDB
+    thread.start()
 
 if __name__ == "__main__":
     # Create a Config instance and load the config.ctl file
