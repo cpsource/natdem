@@ -3,6 +3,9 @@ class Config:
         self.config_data = {}
         self.load_config(config_file)
 
+    def get_config_data(self):
+        return self.config_data
+    
     def load_config(self, config_file):
         """Read the config.ctl file and store variable-value pairs."""
         try:
@@ -22,10 +25,12 @@ class Config:
         except Exception as e:
             print(f"An error occurred while reading {config_file}: {e}")
 
+        # return this dictionary
+        return self.config_data
+    
     def get_value(self, variable_name):
         """Retrieve the value of the specified variable."""
         return self.config_data.get(variable_name, None)
-
 
 def main():
     # Create a Config instance and load the config.ctl file

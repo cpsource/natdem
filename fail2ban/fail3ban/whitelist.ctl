@@ -1,3 +1,4 @@
 # Whitelisted ip addresses
-192.168.8.1
-192.168.1.1
+
+# Me
+98.97.16.30
