@@ -1,4 +1,7 @@
 import subprocess
+import signal
+import os
+import time
 
 class MonitorJournalctl:
     def __init__(self):
@@ -34,9 +37,25 @@ class MonitorJournalctl:
     def stop_monitoring(self):
         """Stop monitoring the journal logs."""
         if self.process:
-            self.process.terminate()
-            self.process.wait()
-            print("Stopped monitoring journal logs.")
+            try:
+                # Send SIGTERM to the process group to terminate journalctl
+                os.killpg(os.getpgid(self.process.pid), signal.SIGTERM)
+
+                # Sleep for 100ms to allow journalctl to terminate gracefully
+                time.sleep(0.1)
+            
+                # Check if the process has terminated
+                if self.process.poll() is None:  # If process is still running
+                    print("Waiting for journalctl to terminate...")
+                    self.process.wait(timeout=5)  # Wait for 5 seconds
+
+                if self.process.poll() is None:  # If still running after timeout
+                    print("Forcing journalctl to terminate...")
+                    os.killpg(os.getpgid(self.process.pid), signal.SIGKILL)  # Force kill
+                else:
+                    print("Stopped monitoring journal logs.")
+            except Exception as e:
+                print(f"Error stopping journalctl: {e}")
 
 # Example usage
 if __name__ == "__main__":
@@ -44,7 +63,7 @@ if __name__ == "__main__":
     monitor.start_monitoring()
 
     # Fetch and print 5 log records
-    for _ in range(5):
+    for _ in range(35):
         record = monitor.get_next_record()
         print(f"Log: {record}")
 
