@@ -7,7 +7,7 @@ class Iptables:
         self.debug = debug
 
     def debug_print(self, message):
-        # Helper method to print debug messages only if debug is True
+        """Helper method to print debug messages only if debug is True."""
         if self.debug:
             print(f"Debug: {message}")
 
@@ -21,20 +21,34 @@ class Iptables:
             print(f"An error occurred: {e.stderr}")
             return None
 
+    def is_in_chain(self, ip_address):
+        """Check if the IP address is already in iptables."""
+        try:
+            # Check if the IP exists in the INPUT chain or any fail3ban chain
+            result = self.run_command(['sudo', 'iptables', '-L', 'INPUT', '-n'])
+            if ip_address in result:
+                self.debug_print(f"IP {ip_address} is already in the INPUT chain.")
+                return True
+            
+            # Check custom fail3ban chains
+            custom_chains = self.run_command(['sudo', 'iptables', '-L', '-n'])
+            if ip_address in custom_chains:
+                self.debug_print(f"IP {ip_address} is in a custom fail3ban chain.")
+                return True
+        except subprocess.CalledProcessError as e:
+            print(f"Error checking if IP {ip_address} is in chain: {e}")
+        return False
+
     def remove_chain(self, chain_name, rule_num):
         """Remove all rules from a chain, unlink it from INPUT, and then delete the chain."""
-
-        # Remove any reference to the chain from the INPUT chain
         unlink_command = ['sudo', 'iptables', '-D', 'INPUT', rule_num]
         self.debug_print(f"Unlinking chain {chain_name} from INPUT. Executing command: {' '.join(unlink_command)}")
         self.run_command(unlink_command)  # Unlink the chain from INPUT
 
-        # Flush all rules in the user defined chain
         flush_command = ['sudo', 'iptables', '-F', chain_name]
         self.debug_print(f"Removing all rules from chain {chain_name}. Executing command: {' '.join(flush_command)}")
         self.run_command(flush_command)  # Flush all rules in the chain
 
-        # Delete the chain
         delete_command = ['sudo', 'iptables', '-X', chain_name]
         self.debug_print(f"Deleting chain {chain_name}. Executing command: {' '.join(delete_command)}")
         self.run_command(delete_command)
@@ -81,14 +95,12 @@ class Iptables:
             rules_to_remove = []
             chains_to_remove = []
 
-            # Iterate through the rules and find rules or chains with 'fail3ban'
             for line in lines:
                 if 'fail3ban' in line:
                     parts = line.split()
-                    rule_num = parts[0]  # Get the rule number from the first part
+                    rule_num = parts[0]
 
-                    # Detect if it's a chain or just a rule
-                    chain_match = [part for part in parts if part.startswith('f3b-')]  # Look for chain names
+                    chain_match = [part for part in parts if part.startswith('f3b-')]
                     if chain_match:
                         chain_name = chain_match[0]
                         self.debug_print(f"Found chain {chain_name} with comment 'fail3ban'.")
@@ -97,12 +109,10 @@ class Iptables:
                         self.debug_print(f"Found rule with comment 'fail3ban', rule number {rule_num}.")
                         rules_to_remove.append(rule_num)
 
-            # Remove chains and their rules in reverse order
             for chain_name, rule_num in reversed(chains_to_remove):
                 self.debug_print(f"Removing chain {chain_name}.")
-                self.remove_chain(chain_name,rule_num)
+                self.remove_chain(chain_name, rule_num)
 
-            # Remove other rules with 'fail3ban' in reverse order
             for rule_num in reversed(rules_to_remove):
                 self.remove_rule('INPUT', rule_num)
 
