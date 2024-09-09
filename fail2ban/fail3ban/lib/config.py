@@ -1,3 +1,5 @@
+import re
+
 class Config:
     def __init__(self, config_file='config.ctl'):
         self.config_data = {}
@@ -19,7 +21,20 @@ class Config:
                     # Split the line into variable and value
                     if '=' in line:
                         variable, value = map(str.strip, line.split('=', 1))
+                        # Check if the variable is 'default_ban_time'
+                        if variable == 'default_ban_time':
+                            # Define a regex to match <digits>[ \t]*[h, d, w, m, y]
+                            match = re.match(r'(\d+)[ \t]*([hdwmy])', value)
+                            if match:
+                                # Extract the numeric part and the time unit
+                                num_value = int(match.group(1))
+                                time_unit = match.group(2)
+                                # Define the time multipliers
+                                multipliers = {'h': 60, 'd': 1440, 'w': 10080, 'm': 302400, 'y': 3628800}
+                                # Multiply the value by the corresponding multiplier
+                                value = num_value * multipliers[time_unit]
                         self.config_data[variable] = value
+
         except FileNotFoundError:
             print(f"Error: {config_file} not found.")
         except Exception as e:

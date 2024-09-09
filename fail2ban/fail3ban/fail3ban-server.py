@@ -61,6 +61,14 @@ if __name__ == "__main__":
         debug = tmp_var
     else:
         print(f"pretending for this session isset to {pretend}")
+    # Get default_ban_time
+    tmp_var = configData.get('default_ban_time')
+    if tmp_var is not None:
+        print(f"default ban time for this session is set to {tmp_var} minutes")
+        default_ban_time = tmp_var
+    else:
+        default_ban_time = 1
+        print(f"default ban time defaults to 1 minute")
 
     wl = f3b_whitelist.Whitelist(configData)
     wl.whitelist_init()
