@@ -21,6 +21,7 @@ import f3b_match_rule
 import f3b_SectionParser
 import f3b_ruleset
 import f3b_config
+import f3b_sqlite3_db
 
 #
 # Config values can be overwritten by config.ctl
@@ -54,6 +55,8 @@ if __name__ == "__main__":
         debug = tmp_var
     else:
         print("debugging for this session is set to False")
+        debug = False
+        
     # Get pretend flag
     tmp_var = configData.get('pretend')
     if tmp_var is not None:
@@ -70,6 +73,16 @@ if __name__ == "__main__":
         default_ban_time = 1
         print(f"default ban time defaults to 1 minute")
 
+    # sqlite3 initialization
+    db = f3b_sqlite3_db.SQLiteDB()
+    if db is not None:
+        db.initialize('bans.db')
+        if debug:
+            print(f"Debug: sqlite3 database initialized")            
+    else:
+        print(f"Error: can't initialize sqlite3 database initialized")            
+            
+    # whitelist initialization
     wl = f3b_whitelist.Whitelist(configData)
     wl.whitelist_init()
     print("Whitelisted IPs:", wl.get_whitelist())
