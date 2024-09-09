@@ -21,7 +21,7 @@ class SQLiteDB:
         create_table_query = '''
         CREATE TABLE IF NOT EXISTS ban_table (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            ip_address CHAR(15),
+            ip_address CHAR(40),
             jail CHAR(100),
             usage_count INTEGER,
             ban_expire_time TIME,
