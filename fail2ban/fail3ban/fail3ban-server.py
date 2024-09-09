@@ -20,8 +20,22 @@ import f3b_iptables
 import f3b_match_rule
 import f3b_parse_file
 import f3b_ruleset
+import f3b_config
+
+# default value of debug, but can be overwritten by config.ctl
+debug = False
 
 if __name__ == "__main__":
+    # Create a Config instance and load the config.ctl file
+    config = f3b_config.Config('config.ctl')
+    # Get debug flag
+    tmp_debug = config.get_value('debug')
+    if tmp_debug is not None:
+        print(f"debugging for this session is set to {tmp_debug}")
+        debug = tmp_debug
+    else:
+        print("debugging for this session is set to False")
+
     wl = f3b_whitelist.Whitelist()
     wl.whitelist_init()
     print("Whitelisted IPs:", wl.get_whitelist())
