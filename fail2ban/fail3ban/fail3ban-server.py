@@ -133,3 +133,13 @@ if __name__ == "__main__":
     wl = f3b_whitelist.Whitelist(configData)
     wl.whitelist_init()
     print("Whitelisted IPs:", wl.get_whitelist())
+
+    # Initialize with debug=True to enable debug prints
+    rs = f3b_ruleset.Ruleset(debug=False)
+    # Example of retrieving a specific ruleset by filename (without .conf)
+    trial_ruleset = 'test'
+    specific_ruleset = rs.get_ruleset_by_filename(trial_ruleset)
+    if specific_ruleset:
+        print(f"Ruleset for '{trial_ruleset}': {specific_ruleset}")
+    else:
+        print("Ruleset not found for '{trial_ruleset}'")
