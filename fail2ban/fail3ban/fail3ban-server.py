@@ -19,7 +19,7 @@ sys.path.append(subdirectory_path)
 import f3b_whitelist
 import f3b_blacklist
 import f3b_fail3baninit
-import f3b_iptables
+import f3b_Iptables
 import f3b_match_rule
 import f3b_SectionParser
 import f3b_ruleset
@@ -47,6 +47,7 @@ def check_var(var):
 #print(check_var(42))      # 42 (since var is not None or bool)
 #print(check_var("hello")) # "hello" (since var is not None or bool)
 
+# A worker thread
 def manage_bans(database_class, iptables_class):
     """Manage bans by ensuring non-banned IPs are in iptables, and expired IPs are removed."""
     
@@ -88,7 +89,7 @@ def manage_bans(database_class, iptables_class):
 
 # Example usage in a thread
 def start_manage_bans():
-    thread = threading.Thread(target=manage_bans, args=(SQLiteDB, iptables))  # Or use mariaDB
+    thread = threading.Thread(target=manage_bans, args=(f3b_sqlite3_db.SQLiteDB, f3b_iptables.iptables))  # Or use mariaDB
     thread.start()
 
 if __name__ == "__main__":

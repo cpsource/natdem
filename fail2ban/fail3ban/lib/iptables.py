@@ -2,7 +2,7 @@ import subprocess
 import sys
 import time
 
-class Iptables:
+class iptables:
     def __init__(self, debug=False):
         self.debug = debug
 
