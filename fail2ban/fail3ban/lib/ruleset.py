@@ -1,5 +1,6 @@
 import os
 import glob
+import inspect
 
 class Ruleset:
     def __init__(self, debug=False):
@@ -13,11 +14,29 @@ class Ruleset:
             self.debug_print(f"Processing file {filename}")
             self.process_file(filename)
 
-    def debug_print(self, message):
-        # Helper method to print debug messages only if debug is True
+    def debug_print(self, message, error_info=None):
+        """Helper method to print debug messages.
+        If error_info is provided as [error_string, file, line], display them first.
+        Otherwise, get the file and line number from the caller's stack frame."""
+    
         if self.debug:
+            if error_info and len(error_info) == 3:
+                error_string, file, line = error_info
+                print(f"Error: {error_string}, File: {file}, Line: {line}")
+            else:
+                # Get the caller's file and line number using inspect
+                caller_frame = inspect.currentframe().f_back  # Get the caller's frame
+                file = caller_frame.f_code.co_filename  # Get the caller's file name
+                line = caller_frame.f_lineno  # Get the caller's line number
+                print(f"Program: {file}, Line: {line}")
+        
+            # Print the main debug message
             print(f"Debug: {message}")
-
+            
+    def contains_host(self, string):
+        """Returns True if the string contains '<HOST>', else False."""
+        return '<HOST>' in string
+            
     def process_file(self, filename):
         try:
             with open(filename, 'r') as file:
@@ -60,8 +79,20 @@ class Ruleset:
                             # Grab the failregex line and subsequent lines
                             regex_part = line.split('=')[1].strip()  # Extract the regex part
                             regex_part = self.adjust_regex(regex_part)
-                            regexes.append(regex_part)
-                            self.debug_print(f"Found failregex: {regex_part}")
+
+                            # The string must contain a <HOST>
+                            if self.contains_host(regex_part):
+                                # Append to our list
+                                regexes.append(regex_part)
+                                self.debug_print(f"Found failregex: {regex_part}")
+                            else:
+                                self.debug_print(f"  *** Ignoring.\n  *** regex_part = {regex_part}",
+                                                 [
+                                                     'Error: missing <HOST>',
+                                                     __file__,
+                                                     inspect.currentframe().f_lineno
+                                                 ])
+
                         elif line.startswith("^") or line.startswith(" "):  # Subsequent regex lines
                             regex_part = self.adjust_regex(line.strip())
                             regexes.append(regex_part)

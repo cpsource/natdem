@@ -66,5 +66,16 @@ def main():
     print(f"Extracted Data: {result[1][:4]}")  # Print the first four elements of the list (excluding the regex object)
     print(f"Compiled Regex: {result[1][4]}")  # Print the compiled regex object
 
+    log_line = "Sep 07 07:43:48 ip-172-26-10-222 sshd[53517]: Connection reset by 14:22 port 57610 [preauth]"
+    jail_regex = "Connection reset by <HOST>.*\[preauth\]"
+    
+    # Call the match_rule subroutine and print the results
+    result = match_rule(log_line, jail_regex)
+    
+    # Output the flag, values, and the compiled regex
+    print(f"Match found: {result[0]}")
+    print(f"Extracted Data: {result[1][:4]}")  # Print the first four elements of the list (excluding the regex object)
+    print(f"Compiled Regex: {result[1][4]}")  # Print the compiled regex object
+    
 if __name__ == "__main__":
     main()
