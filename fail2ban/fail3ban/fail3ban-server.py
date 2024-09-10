@@ -26,6 +26,7 @@ import f3b_ruleset
 import f3b_config
 import f3b_sqlite3_db
 import f3b_DebugPrint
+import f3b_matchRule
 
 #
 # Config values can be overwritten by config.ctl
