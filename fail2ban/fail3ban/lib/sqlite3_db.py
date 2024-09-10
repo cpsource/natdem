@@ -15,7 +15,7 @@ class SQLiteDB:
     def initialize(self, db_name):
         """Initialize the SQLite database, creating it if it doesn't exist."""
         self.db_name = db_name
-        self.connection = sqlite3.connect(self.db_name)
+        self.connection = sqlite3.connect(self.db_name,check_same_thread=False)
         self.cursor = self.connection.cursor()
 
         # Create the table if it doesn't exist

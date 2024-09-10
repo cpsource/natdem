@@ -49,18 +49,17 @@ def check_var(var):
 #print(check_var("hello")) # "hello" (since var is not None or bool)
 
 # A worker thread
-def manage_bans(database_class, iptables_class):
+def manage_bans(db_instance, iptables_class):
     """Manage bans by ensuring non-banned IPs are in iptables, and expired IPs are removed."""
     
-    # Initialize the database connection and iptables class
-    db = database_class()
-    db.initialize('bans.db')  # Assuming SQLite, update as needed for MariaDB
-
+    # Save ptr to database
+    db_instance = db_instance
+    # ipt allows us to manage iptables
     ipt = iptables_class()
 
     # 1. Initial step: ensure non-banned IPs are in iptables
     print("Ensuring non-banned IPs are in iptables...")
-    non_banned_records = db.get_expired_records()  # Method should return non-banned IPs
+    non_banned_records = db_instance.get_expired_records()  # Method should return non-banned IPs
     for record in non_banned_records:
         ip_addr, is_ipv6, jail = record
         # Ensure the IP is in iptables
@@ -72,7 +71,7 @@ def manage_bans(database_class, iptables_class):
         print("Scanning for expired bans...")
         
         # Query for expired bans
-        expired_bans = db.get_expired_records()  # Get expired IPs from database
+        expired_bans = db_instance.get_expired_records()  # Get expired IPs from database
         for record in expired_bans:
             ip_addr, is_ipv6, jail = record
             
@@ -81,7 +80,7 @@ def manage_bans(database_class, iptables_class):
             print(f"Removed IP {ip_addr} from iptables.")
             
             # Remove from the database
-            db.remove_record(ip_addr, jail)
+            db_instance.remove_record(ip_addr, jail)
             print(f"Removed IP {ip_addr} from database.")
         
         # Sleep for an hour
@@ -89,8 +88,8 @@ def manage_bans(database_class, iptables_class):
         time.sleep(3600)
 
 # Example usage in a thread
-def start_manage_bans():
-    thread = threading.Thread(target=manage_bans, args=(f3b_sqlite3_db.SQLiteDB, f3b_iptables.iptables))  # Or use mariaDB
+def start_manage_bans(db_instance):
+    thread = threading.Thread(target=manage_bans, args=(db_instance, f3b_iptables.iptables))  # Or use mariaDB
     thread.start()
 
 if __name__ == "__main__":
@@ -117,11 +116,11 @@ if __name__ == "__main__":
         debugPrintClass.print(f"default ban time defaults to 1 minute")
 
     # sqlite3 initialization
-    db = f3b_sqlite3_db.SQLiteDB()
-    if db is not None:
-        db.initialize('bans.db')
+    db_instance = f3b_sqlite3_db.SQLiteDB()
+    if db_instance is not None:
+        db_instance.initialize(configData.get('database_name'))
         if debug:
-            debugPrintClass.print(f"sqlite3 database initialized")            
+            debugPrintClass.print(f"sqlite3 database initialized","INFO")            
     else:
         debugPrintClass.print(f"can't initialize sqlite3 database initialized","ERROR")            
             
