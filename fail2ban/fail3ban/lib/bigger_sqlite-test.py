@@ -30,6 +30,11 @@ class DatabaseManager:
                         cursor.execute("INSERT INTO my_table (name) VALUES (?)", (name,))
                         conn.commit()  # Commit after the write operation
                         new_records += 1  # Increment the local count for new records
+
+                        # Increment the add-count for this thread in the inc_dec_cnt table
+                        cursor.execute("UPDATE inc_dec_cnt SET add_count = add_count + 1 WHERE thread_id = ?", (f'Thread_{thread_id}',))
+                        conn.commit()
+                        
                         print(f"Thread {thread_id}: Inserted {name}")
                     except sqlite3.DatabaseError as e:
                         print(f"Thread {thread_id}: Write error: {e}")
@@ -56,6 +61,11 @@ class DatabaseManager:
                             cursor.execute("DELETE FROM my_table WHERE id = ?", (random_record_id,))
                             conn.commit()
                             new_records -= 1  # Decrement the local count for deleted records
+
+                            # Increment the delete-count for this thread in the inc_dec_cnt table
+                            cursor.execute("UPDATE inc_dec_cnt SET delete_count = delete_count + 1 WHERE thread_id = ?", (f'Thread_{thread_id}',))
+                            conn.commit()
+
                             print(f"Thread {thread_id}: Deleted record with id {random_record_id}")
                         else:
                             print(f"Thread {thread_id}: No records to delete.")
@@ -101,15 +111,29 @@ def main():
     db_manager = DatabaseManager(db_name)
     conn = db_manager.get_connection()
 
-    # Create the table if it doesn't exist
+    # Create the tables if they don't exist
     conn.execute("CREATE TABLE IF NOT EXISTS my_table (id INTEGER PRIMARY KEY, name TEXT)")
-    
-    # Clean up the table by deleting all records
-    conn.execute("DELETE FROM my_table")
-    conn.commit()
-    print("Cleaned the table, all records deleted.")
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS inc_dec_cnt (
+            id INTEGER PRIMARY KEY,
+            thread_id TEXT,
+            add_count INTEGER DEFAULT 0,
+            delete_count INTEGER DEFAULT 0
+        )
+    """)
 
-    # Close the connection after setting up the table and cleaning it
+    # Clean up the tables by deleting all records
+    conn.execute("DELETE FROM my_table")
+    conn.execute("DELETE FROM inc_dec_cnt")
+    conn.commit()
+    print("Cleaned the tables, all records deleted.")
+
+    # Initialize the inc_dec_cnt table with a row for each thread
+    for i in range(5):  # Assuming 5 threads
+        conn.execute("INSERT INTO inc_dec_cnt (thread_id, add_count, delete_count) VALUES (?, 0, 0)", (f'Thread_{i}',))
+    conn.commit()
+
+    # Close the connection after setting up the tables and cleaning them
     conn.close()
 
     # Create a list to store the final record counts from each thread
@@ -135,15 +159,31 @@ def main():
     cursor = conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM my_table")
     actual_row_count = cursor.fetchone()[0]
-    conn.close()
+
+    # Verify the inc_dec_cnt table and display the final report with net count and running total
+    cursor.execute("SELECT * FROM inc_dec_cnt")
+    inc_dec_records = cursor.fetchall()
 
     print(f"Actual records in the database: {actual_row_count}")
+    print("\nThread operation counts (add/delete/net):")
+
+    running_total = 0
+    for record in inc_dec_records:
+        thread_id = record[1]
+        add_count = record[2]
+        delete_count = record[3]
+        net_count = add_count - delete_count
+        running_total += net_count
+
+        print(f"Thread {thread_id} -> Add count: {add_count}, Delete count: {delete_count}, Net count: {net_count}, Running total: {running_total}")
+
+    conn.close()
 
     # Check consistency
     if total_records == actual_row_count:
-        print("Overall consistency check passed!")
+        print("\nOverall consistency check passed!")
     else:
-        print("Overall consistency check failed!")
+        print("\nOverall consistency check failed!")
 
 if __name__ == "__main__":
     main()
