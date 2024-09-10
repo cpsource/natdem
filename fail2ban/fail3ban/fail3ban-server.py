@@ -25,6 +25,7 @@ import f3b_SectionParser
 import f3b_ruleset
 import f3b_config
 import f3b_sqlite3_db
+import f3b_DebugPrint
 
 #
 # Config values can be overwritten by config.ctl
@@ -94,45 +95,38 @@ if __name__ == "__main__":
     # Create a Config instance and load the config.ctl file
     configClass = f3b_config.Config('config.ctl')
     configData = configClass.get_config_data()
+
+    # Setup debugging print
+    debugPrintClass = f3b_DebugPrint.DebugPrint(configClass)
     
-    # Get debug flag
-    tmp_var = configData.get('debug')
-    if tmp_var is not None:
-        print(f"debugging for this session is set to {tmp_var}")
-        debug = tmp_var
-    else:
-        print("debugging for this session is set to False")
-        debug = False
-        
     # Get pretend flag
     tmp_var = configData.get('pretend')
     if tmp_var is not None:
-        print(f"pretending for this session is set to {tmp_var}")
-        debug = tmp_var
+        debugPrintClass.print(f"pretending for this session is set to {tmp_var}")
     else:
-        print(f"pretending for this session isset to {pretend}")
+        debugPrintClass.print(f"pretending for this session isset to {pretend}")
     # Get default_ban_time
     tmp_var = configData.get('default_ban_time')
     if tmp_var is not None:
-        print(f"default ban time for this session is set to {tmp_var} minutes")
+        debugPrintClass.print(f"default ban time for this session is set to {tmp_var} minutes")
         default_ban_time = tmp_var
     else:
         default_ban_time = 1
-        print(f"default ban time defaults to 1 minute")
+        debugPrintClass.print(f"default ban time defaults to 1 minute")
 
     # sqlite3 initialization
     db = f3b_sqlite3_db.SQLiteDB()
     if db is not None:
         db.initialize('bans.db')
         if debug:
-            print(f"Debug: sqlite3 database initialized")            
+            debugPrintClass.print(f"sqlite3 database initialized")            
     else:
-        print(f"Error: can't initialize sqlite3 database initialized")            
+        debugPrintClass.print(f"can't initialize sqlite3 database initialized","ERROR")            
             
     # whitelist initialization
     wl = f3b_whitelist.Whitelist(configData)
     wl.whitelist_init()
-    print("Whitelisted IPs:", wl.get_whitelist())
+    debugPrintClass.print("Whitelisted IPs:", wl.get_whitelist())
 
     # Initialize with debug=True to enable debug prints
     rs = f3b_ruleset.Ruleset(debug=False)
@@ -140,6 +134,6 @@ if __name__ == "__main__":
     trial_ruleset = 'test'
     specific_ruleset = rs.get_ruleset_by_filename(trial_ruleset)
     if specific_ruleset:
-        print(f"Ruleset for '{trial_ruleset}': {specific_ruleset}")
+        debugPrintClass.print(f"Ruleset for '{trial_ruleset}': {specific_ruleset}")
     else:
-        print("Ruleset not found for '{trial_ruleset}'")
+        debugPrintClass.print("Ruleset not found for '{trial_ruleset}'",'ERROR')
