@@ -56,6 +56,3 @@ The script includes error handling for:
 - Missing OpenAI API key in environment variables.
 - Non-existent input files.
 - Pre-existing output markdown files.
-```
-
-This format documents the script's functionality, usage, and structure clearly with an emphasis on key points that a user might need to understand when running or modifying the script.
