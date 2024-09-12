@@ -120,7 +120,7 @@ if __name__ == "__main__":
     infile = args.file_path
     # Strip off the extension from infile and use the base name + '.md' as the output filename
     base_name = os.path.splitext(infile)[0]  # This removes the extension
-    output_filename = base_name + ".md"  # Add the '.md' extension
+    output_filename = "README-" + base_name + ".md"  # Add the '.md' extension
 
     # Check if the output file already exists
     if os.path.exists(output_filename):
