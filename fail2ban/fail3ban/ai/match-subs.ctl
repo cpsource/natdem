@@ -19,3 +19,6 @@ Connection\s+closed\s+by\s+invalid\s+user\s+(?P<user>\w+)
 [subroutine: match_port]
 port\s+(?P<port>\d+)\s*
 
+[subroutine: match_user_not_allowed]
+User\s+(?P<user>\w+)\s+from\s+(?P<ip>\d{1,3}(?:\.\d{1,3}){3})\s+not\s+allowed\s+because\s+not\s+listed\s+in\s+AllowUsers
+

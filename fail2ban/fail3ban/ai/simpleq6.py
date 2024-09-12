@@ -96,10 +96,17 @@ log_entry_1 = "Sep 12 09:15:45 ip-172-30-10-222 sshd[24568]: Invalid user guest 
 # Sample log entry (Connection closed scenario)
 log_entry_2 = "Sep 12 09:16:12 ip-172-30-10-222 sshd[24568]: Connection closed by invalid user guest 192.168.0.10 port 52222"
 
+# Sample log entry (match_user_not_allowed)
+log_entry_3 ="Sep 12 02:30:06 ip-172-26-10-222 sshd[147882]: User nobody from 65.20.164.43 not allowed because not listed in AllowUsers"
+
 # Apply the dynamic subroutines based on the ctl file
 print("\n--- Processing log_entry_1 (invalid_user) ---")
 apply_dynamic_subroutines(log_entry_1, "invalid_user", subroutine_chains)
 
 print("\n--- Processing log_entry_2 (connection_closed) ---")
 apply_dynamic_subroutines(log_entry_2, "connection_closed", subroutine_chains)
+
+print("\n--- Processing log_entry_3 (user_not_allowed) ---")
+apply_dynamic_subroutines(log_entry_3, "block_nobody_user", subroutine_chains)
+
 
