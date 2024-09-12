@@ -4,6 +4,21 @@ import json
 import argparse
 import sys
 
+#
+# Note:
+#
+# This program uses ChatGPT to create a markdown document of python code
+#
+# Before you can run this, do the following from ~/
+#
+#  . openai/bin/activate
+#  . OpenAI-My-Test-Key-Default-project.sh
+#
+# To run, do the following:
+#
+#  python3 buildMdFile.py <file-to-document> > <file-to-document>.md
+#
+
 class ChatWithOpenAI:
     def __init__(self, model="gpt-4o-2024-08-06"):
         """
