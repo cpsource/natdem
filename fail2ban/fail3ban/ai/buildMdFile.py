@@ -52,6 +52,7 @@ class ChatWithOpenAI:
                 model=self.model,
                 messages=self.messages
             )
+            #print(f"response = {response}")
             assistant_message = response.choices[0].message.content
             #assistant_message = response['choices'][0].message.content
             self.messages.append({"role": "assistant", "content": assistant_message})
@@ -107,11 +108,33 @@ if __name__ == "__main__":
     chat.set_system("Help document the attached python3 code.")
 
     # load a file into assistant
-    chat.send_file("./monitorJournalctl.py")
+    chat.send_file(args.file_path)
     
     # User sends a message
     chat.user_message("Please document the attached python3 file in markdown format.")
 
     # Get the assistant's response
-    print("Assistant:", chat.get_response())
+    response = chat.get_response()
+
+    # write to a file
+    infile = args.file_path
+    # Strip off the extension from infile and use the base name + '.md' as the output filename
+    base_name = os.path.splitext(infile)[0]  # This removes the extension
+    output_filename = base_name + ".md"  # Add the '.md' extension
+
+    # Check if the output file already exists
+    if os.path.exists(output_filename):
+        print(f"Error: The file '{output_filename}' already exists.")
+        sys.exit(1)  # Exit the program with an error code
+
+    # Open the new file and write the output to it
+    with open(output_filename, 'w') as outfile:
+        # Create the content as a single string
+        output_content = f"# {infile}\n{response}\n"
+        # Write the content to the file
+        outfile.write(output_content)
+
+    print(f"Content successfully written to {output_filename}")
+
+    #print(f"# {infile}\n{response}", infile, response)
 
