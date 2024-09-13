@@ -1,3 +1,7 @@
+#
+# Create 5 threads, pound on sqlite3 and look for lock errors
+#
+
 import sqlite3
 import threading
 import random
