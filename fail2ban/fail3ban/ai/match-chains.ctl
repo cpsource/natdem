@@ -14,7 +14,7 @@ match_user_connection_closed
 match_ip_address
 match_port
 
-#  sshd[147882]: User nobody from 65.20.164.43 not allowed because not listed in AllowUsers
+# Sep 13 08:23:51 ip-172-26-10-222 sshd[147882]: User nobody from 65.20.164.43 not allowed because not listed in AllowUsers
 [subroutine: block_nobody_user]
 match_date
 match_ip
