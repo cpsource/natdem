@@ -5,6 +5,16 @@ import subprocess
 import tempfile
 import re
 
+#
+# Here's a double line that needs to be combined
+# into one line, so we can process it effectively.
+# I suggest we keep track of the previous line and
+# combine them if the [digits] and [jail] are the same.
+#
+
+#Journalctl line: Sep 13 12:46:37 ip-172-26-10-222 sshd[172070]: error: kex_exchange_identification: Connection closed by remote host
+#Journalctl line: Sep 13 12:46:37 ip-172-26-10-222 sshd[172070]: Connection closed by 104.152.52.121 port 51587
+
 # Path to the temporary file in /tmp
 temp_file = tempfile.NamedTemporaryFile(delete=False, dir='/tmp', mode='w', prefix='journal_', suffix='.log')
 
@@ -13,9 +23,6 @@ def clean_temp_files():
     if os.path.exists(temp_file.name):
         os.remove(temp_file.name)
     #print("Cleaned up temporary files.")
-
-# Function to check if a jail is enabled by searching for 'enabled = true'
-import re
 
 # Function to check if a jail is enabled by searching for 'enabled = true' or 'enabled = false'
 import re
@@ -95,6 +102,9 @@ def process_journalctl_line(line):
 # Start journalctl -f
 journalctl_proc = subprocess.Popen(['journalctl', '-f'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
+# track one line behind so we can combine them if necessary
+previous_line = None
+
 try:
     # Process each line from journalctl -f
     for line in journalctl_proc.stdout:
@@ -105,6 +115,9 @@ try:
         print(f"Journalctl line: {line.strip()}")
         process_journalctl_line(line)
 
+        # Now save a previous line
+        previous_line = line
+        
 except KeyboardInterrupt:
     print("Script interrupted. Exiting...")
 finally:
