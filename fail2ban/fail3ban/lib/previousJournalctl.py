@@ -31,9 +31,13 @@ class previousJournalctl:
         # Do we have any previous at all ???
         if self.free_list[prev_idx] is None:
             return (False, None)
-        
+
         # Extract tmp_jail and tmp_pid from the entry at prev_idx
-        tmp_jail, tmp_pid, _, _ = self.free_list[prev_idx]
+        tmp_jail, tmp_pid, initial_ip_address, _ = self.free_list[prev_idx]
+
+        # If there is no ip_address at this index, looking back will be fruitless
+        #if ip_address is None:
+        #    return (False, None)
         
         # Loop through the list looking for a match
         while True:
@@ -46,10 +50,18 @@ class previousJournalctl:
             
             # Extract jail and pid from the entry at prev_idx
             if self.free_list[prev_idx] is not None:
-                jail, pid, _, _ = self.free_list[prev_idx]
+                jail, pid, tmp_ip_address, _ = self.free_list[prev_idx]
                 
                 # Compare the jail and pid values
                 if jail == tmp_jail and pid == tmp_pid:
+
+                    # one of the two must have an ip_address
+                    if initial_ip_address is None and tmp_ip_address is None:
+                        continue
+                    if initial_ip_address is not None and tmp_ip_address is not None:
+                        if initial_ip_address != tmp_ip_address:
+                            continue
+                    # it's ok
                     return (True, self.free_list[prev_idx])
             else:
                 return (False, None)
