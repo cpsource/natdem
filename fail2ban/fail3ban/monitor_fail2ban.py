@@ -5,6 +5,7 @@ import subprocess
 import tempfile
 import re
 import ipaddress
+import sys
 
 #
 # Allow our foundation classes to be loaded
@@ -217,7 +218,7 @@ journalctl_proc = subprocess.Popen(['journalctl', '-f'], stdout=subprocess.PIPE,
 #previous_line = None
 
 # use new previousJournalctl class
-prevs = f3b_previousJournalctl()
+prevs = f3b_previousJournalctl.previousJournalctl()
 
 try:
     # Process each line from journalctl -f
@@ -229,7 +230,7 @@ try:
         prevs.add_entry(line)
 
         # Now, call prev_entry and check if it returns the correct match
-        result = log_monitor.prev_entry()
+        result = prevs.prev_entry()
 
         # Was there a match ???
         if result[0]:
