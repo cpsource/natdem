@@ -25,11 +25,13 @@ class previousJournalctl:
         self.next_free_idx = (self.next_free_idx + 1) % self.radix
     
     def prev_entry(self):
-        if self.free_list[self.next_free_idx] is None:
-            return (False, None)
-        
         # Initialize prev_idx to next_free_idx - 1 modulus radix
         prev_idx = (self.next_free_idx - 1) % self.radix
+
+        # Do we have any previous at all ???
+        if self.free_list[prev_idx] is None:
+            return (False, None)
+        
         # Extract tmp_jail and tmp_pid from the entry at prev_idx
         tmp_jail, tmp_pid, _, _ = self.free_list[prev_idx]
         
