@@ -19,6 +19,9 @@ logging.basicConfig(
     ]
 )
 
+# Create a named logger for my classes to use
+logger = logging.getLogger("monitor_fail3ban")
+
 #
 # Load our foundation classes
 #

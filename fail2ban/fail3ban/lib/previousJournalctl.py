@@ -1,11 +1,14 @@
 import re
+import logging
 
 class previousJournalctl:
     def __init__(self, radix=6):
         self.radix = radix
         self.next_free_idx = 0
         self.free_list = [None] * radix
-    
+        # Obtain logger
+        self.logger = logging.getLogger("monitor_fail3ban")
+        
     def add_entry(self, string):
         # Regex to match the required components (jail, pid, ip-address)
         pattern = r"\S+\s+\S+\s+\S+\s+ip-\d+-\d+-\d+-\d+\s+(\S+)\[(\d+)\]:.*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"
@@ -77,16 +80,16 @@ class previousJournalctl:
                         continue
                     if initial_ip_address is not None and tmp_ip_address is not None:
                         if initial_ip_address == tmp_ip_address:
-                            print(f"ip addresses match {initial_ip_address} {tmp_ip_address}")
+                            self.logger.debug(f"ip addresses match {initial_ip_address} {tmp_ip_address}")
                             # it's ok
                             return (True, self.free_list[prev_idx])
             else:
                 return (False, None)
     
     def show_entries(self):
-        print("Current entries in free_list (from newest to oldest):")
+        self.logger.info("Current entries in free_list (from newest to oldest):")
         if all(entry is None for entry in self.free_list):
-            print("No entries in free_list.")
+            self.logger.info("No entries in free_list.")
             return
         
         idx = (self.next_free_idx - 1) % self.radix  # Start from the last entry
@@ -95,7 +98,7 @@ class previousJournalctl:
         while True:
             entry = self.free_list[idx]
             if entry is not None:
-                print(f"Index {idx}: {entry}")
+                self.logger.info(f"Index {idx}: {entry}")
             else:
                 break  # Stop when an empty (None) entry is encountered
             
@@ -136,14 +139,14 @@ if __name__ == "__main__":
     
     # Print result
     if result[0]:
-        print(f"Match found: {result[1]}")
+        self.logger.info(f"Match found: {result[1]}")
     else:
-        print("No match found")
+        self.logger.info("No match found")
     
     # Verify if it matches the fourth entry
     expected_result = ('mysql', '45678', '192.168.2.2', "Sep 13 23:59:50 ip-172-26-10-222 mysql[45678]: 'mysql' executed by 192.168.2.2")
     if result[1] == expected_result:
-        print("Test passed! Correct match returned.")
+        self.logger.info("Test passed! Correct match returned.")
     else:
-        print("Test failed! Incorrect result.")
+        self.logger.info("Test failed! Incorrect result.")
 
