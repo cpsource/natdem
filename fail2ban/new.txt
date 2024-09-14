@@ -1,4 +1,7 @@
-Journalctl line: Sep 07 07:43:48 ip-172-26-10-222 sshd[53517]: Connection reset by 198.235.24.150 port 57610 [preauth]
-Journalctl line: Sep 07 16:05:53 ip-172-26-10-222 sshd[68774]: Connection closed by invalid user default 65.20.193.96 port 42460 [preauth]
-sshd[1]:  User nobody from 116.226.96.183 not allowed because not listed in AllowUsers
-
+Journalctl line: Sep 13 19:31:03 ip-172-26-10-222 sudo[177039]:   ubuntu : TTY=pts/1 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/apt install whois
+Journalctl line: Sep 13 19:31:03 ip-172-26-10-222 sudo[177039]: pam_unix(sudo:session): session opened for user root(uid=0) by ubuntu(uid=1000)
+Journalctl line: Sep 13 19:31:05 ip-172-26-10-222 sudo[177039]: pam_unix(sudo:session): session closed for user root
+Journalctl line: Sep 13 19:32:35 ip-172-26-10-222 sshd[177012]: Received disconnect from 98.97.20.85 port 60156:11: disconnected by user
+Journalctl line: Sep 13 19:32:35 ip-172-26-10-222 sshd[177012]: Disconnected from user ubuntu 98.97.20.85 port 60156
+Journalctl line: Sep 13 19:32:35 ip-172-26-10-222 systemd[1]: session-1421.scope: Deactivated successfully.
+Journalctl line: Sep 13 19:32:35 ip-172-26-10-222 sshd[176923]: pam_unix(sshd:session): session closed for user ubuntu
