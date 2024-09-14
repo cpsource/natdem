@@ -234,7 +234,7 @@ try:
         # Was there a match ???
         if result[0]:
             #print(f"Match found: {result[1]}")
-            res = combine(result.group(4), line)
+            res = combine(result[3], line)
             if res is not None:
                 # print the new line
                 print(f"*** Combined line: {res.strip()}")
