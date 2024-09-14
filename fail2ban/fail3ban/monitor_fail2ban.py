@@ -130,6 +130,9 @@ def extract_log_info(log_line):
     return jail, sequence_number, ip_info, saved_current_position
 
 def combine(prev_str, cur_str):
+    combined_str = prev_str + " " + cur_str[idx:]
+    return combined_str
+
     if has_ip_address(prev_str) is False and has_ip_address(cur_str) is True:
         #print("inside has ip address")
         r1 = extract_log_info(prev_str)

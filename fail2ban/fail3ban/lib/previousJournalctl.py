@@ -35,6 +35,11 @@ class previousJournalctl:
         # Extract tmp_jail and tmp_pid from the entry at prev_idx
         tmp_jail, tmp_pid, initial_ip_address, _ = self.free_list[prev_idx]
 
+        # If this line has an ip address, we don't need to look back because we have
+        # what we need to consideer banning.
+        if initial_ip_address is not None:
+            return (False, None)
+        
         # If there is no ip_address at this index, looking back will be fruitless
         #if ip_address is None:
         #    return (False, None)
