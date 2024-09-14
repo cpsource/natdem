@@ -54,15 +54,14 @@ class previousJournalctl:
                 
                 # Compare the jail and pid values
                 if jail == tmp_jail and pid == tmp_pid:
-
                     # one of the two must have an ip_address
                     if initial_ip_address is None and tmp_ip_address is None:
                         continue
                     if initial_ip_address is not None and tmp_ip_address is not None:
-                        if initial_ip_address != tmp_ip_address:
-                            continue
-                    # it's ok
-                    return (True, self.free_list[prev_idx])
+                        if initial_ip_address == tmp_ip_address:
+                            print(f"ip addresses match {initial_ip_address} {tmp_ip_address}")
+                            # it's ok
+                            return (True, self.free_list[prev_idx])
             else:
                 return (False, None)
     
