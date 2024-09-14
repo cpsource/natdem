@@ -7,8 +7,20 @@ import re
 import ipaddress
 import sys
 
+# Configure logging
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("monitor_fail2ban.log"),
+        logging.StreamHandler()
+    ]
+)
+
 #
-# Allow our foundation classes to be loaded
+# Load our foundation classes
 #
 # Get the absolute path of the current directory (the directory containing this script)
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -232,23 +244,23 @@ try:
         # Now, call prev_entry and check if it returns the correct match
         result = prevs.prev_entry()
 
+        # Print the journalctl line before processing
+        logging.info(f"Journalctl line: {line.strip()}")
+        
         # Was there a match ???
         if result[0]:
-            #print(f"Match found: {result[1]}")
+            logging.debug(f"Match found: {result[1]}")
             res = combine(result[3], line)
             if res is not None:
                 # print the new line
-                print(f"*** Combined line: {res.strip()}")
+                logging.info(f"*** Combined line: {res.strip()}")
             else:
-                print("Error: could not combine lines")
-        else:
-            # Print the journalctl line before processing
-            print(f"Journalctl line: {line.strip()}")
+                logging.error("could not combine lines")
         
 except KeyboardInterrupt:
-    print("Script interrupted. Exiting...")
+    logging.error("Script interrupted. Exiting...")
 finally:
     # Cleanup: close the temporary file and delete it
     temp_file.close()
     os.remove(temp_file.name)
-    print(f"Temporary file {temp_file.name} removed.")
+    logging.debug(f"Temporary file {temp_file.name} removed.")
