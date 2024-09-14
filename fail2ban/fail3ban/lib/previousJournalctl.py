@@ -23,7 +23,20 @@ class previousJournalctl:
         
         # Update next_free_idx using modulus to wrap around
         self.next_free_idx = (self.next_free_idx + 1) % self.radix
-    
+
+    def get_top_ip_address(self):
+        # Initialize top_idx to next_free_idx - 1 modulus radix
+        top_idx = (self.next_free_idx - 1) % self.radix
+        if self.free_list[top_idx] is not None:
+            # Extract tmp_jail and tmp_pid from the entry at prev_idx
+            _, _, ip_address, _ = self.free_list[top_idx]
+            if ip_address is not None:
+                return ip_address
+            else:
+                return None
+        else:
+            return None
+
     def prev_entry(self):
         # Initialize prev_idx to next_free_idx - 1 modulus radix
         prev_idx = (self.next_free_idx - 1) % self.radix

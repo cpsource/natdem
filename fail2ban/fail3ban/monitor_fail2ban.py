@@ -43,6 +43,31 @@ import f3b_previousJournalctl
 # Path to the temporary file in /tmp
 temp_file = tempfile.NamedTemporaryFile(delete=False, dir='/tmp', mode='w', prefix='journal_', suffix='.log')
 
+import subprocess
+import re
+
+def find_country(ip_address_string):
+    try:
+        # Execute the 'whois' command for the given IP address
+        result = subprocess.run(['whois', ip_address_string], capture_output=True, text=True)
+        
+        # Check if the command ran successfully
+        if result.returncode != 0:
+            raise Exception("Failed to run whois command.")
+        
+        # Search for the line starting with 'country:'
+        match = re.search(r"^country:\s+(.+)$", result.stdout, re.MULTILINE | re.IGNORECASE)
+        
+        if match:
+            # Extract and return the country code (everything after 'country:')
+            return match.group(1).strip()
+        else:
+            # Return None if no country line is found
+            return None
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
 def has_ip_address(input_string):
     """
     Checks if the input string contains an IPv4 or IPv6 address.
@@ -259,8 +284,17 @@ try:
         # Now, call prev_entry and check if it returns the correct match
         result = prevs.prev_entry()
 
-        # Print the journalctl line before processing
-        logging.info(f"{line.strip()}")
+        country_code = None
+        tmp_ip_address = prevs.get_top_ip_address()
+        if tmp_ip_address is not None:
+            country_code = find_country(tmp_ip_address)
+        
+        if country_code is not None:
+            # Print the journalctl line before processing
+            logging.info(f"CC: {country_code} : {line.strip()}")
+        else:
+            # Print the journalctl line before processing
+            logging.info(f"CC: n/a : {line.strip()}")
         
         # Was there a match ???
         if result[0]:
