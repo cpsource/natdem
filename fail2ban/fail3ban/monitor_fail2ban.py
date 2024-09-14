@@ -7,6 +7,17 @@ import re
 import ipaddress
 
 #
+# Allow our foundation classes to be loaded
+#
+# Get the absolute path of the current directory (the directory containing this script)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Add the subdirectory to the system path
+subdirectory_path = os.path.join(current_dir, 'lib')
+sys.path.append(subdirectory_path)
+
+import f3b_previousJournalctl
+
+#
 # Here's a double line that needs to be combined
 # into one line, so we can process it effectively.
 # I suggest we keep track of the previous line and
@@ -203,7 +214,10 @@ def process_journalctl_line(line):
 journalctl_proc = subprocess.Popen(['journalctl', '-f'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
 # track one line behind so we can combine them if necessary
-previous_line = None
+#previous_line = None
+
+# use new previousJournalctl class
+prevs = f3b_previousJournalctl()
 
 try:
     # Process each line from journalctl -f
@@ -211,21 +225,24 @@ try:
         # Clean up previous temporary files
         clean_temp_files()
 
-        line_res = line
-        
-        if previous_line is not None:
-            res = combine(previous_line, line)
+        # Now save
+        prevs.add_entry(line)
+
+        # Now, call prev_entry and check if it returns the correct match
+        result = log_monitor.prev_entry()
+
+        # Was there a match ???
+        if result[0]:
+            #print(f"Match found: {result[1]}")
+            res = combine(result.group(4), line)
             if res is not None:
                 # print the new line
-                print(f"*** Combined line: {res.strip()}")                
-                line_res = res
-                
-        # Print the journalctl line before processing
-        print(f"Journalctl line: {line_res.strip()}")
-        process_journalctl_line(line_res)
-
-        # Now save a previous line
-        previous_line = line
+                print(f"*** Combined line: {res.strip()}")
+            else:
+                print("Error: could not combine lines")
+        else:
+            # Print the journalctl line before processing
+            print(f"Journalctl line: {line.strip()}")
         
 except KeyboardInterrupt:
     print("Script interrupted. Exiting...")
@@ -234,4 +251,3 @@ finally:
     temp_file.close()
     os.remove(temp_file.name)
     print(f"Temporary file {temp_file.name} removed.")
-

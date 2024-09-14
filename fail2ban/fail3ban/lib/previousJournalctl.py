@@ -1,7 +1,7 @@
 import re
 
 class previousJournalctl:
-    def __init__(self, radix=5):
+    def __init__(self, radix=6):
         self.radix = radix
         self.next_free_idx = 0
         self.free_list = [None] * radix
