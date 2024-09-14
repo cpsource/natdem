@@ -129,8 +129,20 @@ def extract_log_info(log_line):
     
     return jail, sequence_number, ip_info, saved_current_position
 
+def cut(string):
+    # Regex pattern to match [a-z-_]+\[[0-9]+\[
+    pattern = r"[a-z-_\.]+\[[0-9]+\]:\s"
+    match = re.search(pattern, string)
+    
+    if match:
+        # Get the end position of the match and return the substring from there
+        return string[match.end():]
+    else:
+        # If no match, return the original string
+        return string
+
 def combine(prev_str, cur_str):
-    combined_str = prev_str + " " + cur_str[idx:]
+    combined_str = prev_str + " " + cut(cur_str[idx:])
     return combined_str
 
     if has_ip_address(prev_str) is False and has_ip_address(cur_str) is True:
@@ -248,7 +260,7 @@ try:
         result = prevs.prev_entry()
 
         # Print the journalctl line before processing
-        logging.info(f"Journalctl line: {line.strip()}")
+        logging.info(f"{line.strip()}")
         
         # Was there a match ???
         if result[0]:
