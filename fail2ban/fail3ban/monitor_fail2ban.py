@@ -261,6 +261,7 @@ except KeyboardInterrupt:
     logging.error("Script interrupted. Exiting...")
 finally:
     # Cleanup: close the temporary file and delete it
-    temp_file.close()
-    os.remove(temp_file.name)
-    logging.debug(f"Temporary file {temp_file.name} removed.")
+    if os.path.exists(temp_file.name):
+        temp_file.close()
+        os.remove(temp_file.name)
+        logging.debug(f"Temporary file {temp_file.name} removed.")
