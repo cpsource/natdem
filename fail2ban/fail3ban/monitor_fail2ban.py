@@ -250,7 +250,7 @@ try:
         # Was there a match ???
         if result[0]:
             logging.debug(f"Match found: {result[1]}")
-            res = combine(result[3], line)
+            res = combine(result[1][3], line)
             if res is not None:
                 # print the new line
                 logging.info(f"*** Combined line: {res.strip()}")
