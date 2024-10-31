@@ -43,17 +43,17 @@ include 'config.php';
 
     <hr class="custom-hr">
 
-<div class="container mt-5 text-center">
-    <h1 class="mb-4">Natural Democracy Podcast</h1>
-    
-    <!-- Audio Player -->
-    <audio id="podcastAudio" src="audio/NatDem.mp3"></audio>
-    
-    <!-- Play Button -->
-    <button onclick="document.getElementById('podcastAudio').play()" 
-            class="btn btn-primary btn-lg">
-        Play Podcast
-    </button>
+<div class="container">
+  <div class="w-50 mx-auto">
+    <br>
+    <h3>Natural Democracy Podcast</h1>
+    <br>    
+    <!-- Audio Player with Controls -->
+    <audio controls>
+        <source src="./audio/NatDem.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+  </div>
 </div>
 
     <hr class="custom-hr">
