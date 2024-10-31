@@ -43,5 +43,20 @@ include 'config.php';
 
     <hr class="custom-hr">
 
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">Natural Democracy Podcast</h1>
+    
+    <!-- Audio Player -->
+    <audio id="podcastAudio" src="audio/NatDem.mp3"></audio>
+    
+    <!-- Play Button -->
+    <button onclick="document.getElementById('podcastAudio').play()" 
+            class="btn btn-primary btn-lg">
+        Play Podcast
+    </button>
+</div>
+
+    <hr class="custom-hr">
+
 <!-- </body> -->
 
